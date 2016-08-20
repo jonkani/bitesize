@@ -10,7 +10,8 @@
   },
   "scripts": {
     "lint": "eslint --ext .js,.jsx --ignore-pattern public",
-    "start": "brunch watch --server"
+    "start": "brunch watch --server",
+    "knex": "knex"
   },
   "dependencies": {
     "axios": "^0.13.1",
@@ -20,6 +21,7 @@
     "knex": "^0.11.10",
     "material-ui": "^0.15.4",
     "morgan": "^1.7.0",
+    "pg": "^6.1.0",
     "react": "^15.3.0",
     "react-dom": "^15.3.0",
     "react-tap-event-plugin": "^1.0.0"
