@@ -1,4 +1,4 @@
-import App from 'components/app';
+import Routes from 'components/Routes';
 import { blue700 } from 'material-ui/styles/colors';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
@@ -21,7 +21,7 @@ const muiTheme = getMuiTheme({
 
 ReactDOM.render(
   <MuiThemeProvider muiTheme={muiTheme}>
-    <App />
+    <Routes />
   </MuiThemeProvider>,
   document.getElementById('app')
 );

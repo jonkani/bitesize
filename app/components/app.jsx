@@ -1,22 +1,24 @@
 import AppBar from 'material-ui/AppBar';
-import PersonAdd from 'material-ui/svg-icons/content/add-circle';
-import Help from 'material-ui/svg-icons/action/help';
-import Person from 'material-ui/svg-icons/action/account-circle';
-import FlatButton from 'material-ui/FlatButton';
-import FloatingActionButton from 'material-ui/FloatingActionButton';
-import React from 'react';
-import IconButton from 'material-ui/IconButton';
-import LocalDining from 'material-ui/svg-icons/maps/restaurant';
-import { red700, green700, orange500, brown700 }
-  from 'material-ui/styles/colors';
-import Paper from 'material-ui/Paper';
 import {BottomNavigation, BottomNavigationItem}
   from 'material-ui/BottomNavigation';
-import IconLocationOn from 'material-ui/svg-icons/communication/location-on';
+import FlatButton from 'material-ui/FlatButton';
+import FloatingActionButton from 'material-ui/FloatingActionButton';
 import FontIcon from 'material-ui/FontIcon';
-import ActionGrade from 'material-ui/svg-icons/action/grade';
+import Help from 'material-ui/svg-icons/action/help';
+import IconButton from 'material-ui/IconButton';
+import IconLocationOn from 'material-ui/svg-icons/communication/location-on';
+import LocalDining from 'material-ui/svg-icons/maps/restaurant';
+import Paper from 'material-ui/Paper';
+import Person from 'material-ui/svg-icons/action/account-circle';
+import PersonAdd from 'material-ui/svg-icons/content/add-circle';
+import React from 'react';
+import { red700, green700, orange500, brown700 }
+  from 'material-ui/styles/colors';
+import { withRouter } from 'react-router';
+
 
 const App = React.createClass({
+
   render() {
     const styleFlatButton = {
       height: '64px',
@@ -119,4 +121,4 @@ const App = React.createClass({
   }
 });
 
-export default App;
+export default withRouter(App);
