@@ -5,7 +5,7 @@ import React from 'react';
 import {BottomNavigation, BottomNavigationItem}
   from 'material-ui/BottomNavigation';
 
-const App = React.createClass({
+const Reg = React.createClass({
   render() {
     const styleFlatButton = {
       height: '64px',
@@ -52,4 +52,4 @@ const App = React.createClass({
   }
 });
 
-export default App;
+export default Reg;
