@@ -4,6 +4,8 @@ const express = require('express');
 const morgan = require('morgan');
 const path = require('path');
 const bodyParser = require('body-parser');
+const users = require('./routes/users');
+const cookieParser = require('cookie-parser');
 
 const app = express();
 
@@ -33,12 +35,15 @@ app.use('/api', (req, res, next) => {
 })
 
 app.use(bodyParser.json());
+app.use(cookieParser());
+
+app.use('/api', users);
 
 app.use((_req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-app.use((err, _req, _res, next) => {
+app.use((err, _req, res, next) => {
   // eslint-disable-next-line no-console
   console.error(err.stack);
   res.sendStatus(500);
