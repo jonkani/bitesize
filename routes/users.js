@@ -6,7 +6,7 @@ const bcrypt = require('bcrypt-as-promised');
 const boom = require('boom');
 const humps = require('humps');
 const { camelizeKeys, decamelizeKeys } = require('humps')
-
+const { checkAuth } = require('./middleware');
 const router = express.Router();
 
 // create user
@@ -40,8 +40,9 @@ router.post('/users', (req, res, next) => {
 });
 
 // update user preferences
-router.patch('/users', (req, res, next) => {
+router.patch('/users', checkAuth, (req, res, next) => {
   const { maxPrice, searchRadius, disabled } = req.body;
+  const id = req.token.userId;
   const compare = function(target, filterer) {
     return target.filter((item) => {
       for (const element of filterer) {
@@ -56,7 +57,7 @@ router.patch('/users', (req, res, next) => {
   let toAdd;
 
   knex('users')
-    .where('id', 1)
+    .where('id', id)
     .update({
       max_price: maxPrice,
       search_radius: searchRadius
@@ -64,7 +65,7 @@ router.patch('/users', (req, res, next) => {
     .then(() => {
       return knex('users_categories')
         .select('category_id')
-        .where('user_id', 1)
+        .where('user_id', id)
     })
     .then((result) => {
       const parsed = result.map((element) => element['category_id']);
@@ -77,7 +78,7 @@ router.patch('/users', (req, res, next) => {
         promisePile.push(
           knex('users_categories')
             .where({
-              user_id: 1,
+              user_id: id,
               category_id: item
             })
             .del()
@@ -87,7 +88,7 @@ router.patch('/users', (req, res, next) => {
         promisePile.push(
           knex('users_categories')
             .insert({
-              user_id: 1,
+              user_id: id,
               category_id: item
             })
         )
@@ -104,11 +105,11 @@ router.patch('/users', (req, res, next) => {
 });
 
 // get user preferences
-router.get('/users', (req, res, next) => {
+router.get('/users', checkAuth, (req, res, next) => {
   knex('users')
     .leftJoin('users_categories', 'users.id', 'user_id')
     .select('max_price', 'search_radius', 'category_id')
-    .where('users.id', 1)
+    .where('users.id', req.token.userId)
     .then((response) => {
       res.send(camelizeKeys(response));
     })
