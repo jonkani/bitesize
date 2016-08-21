@@ -1,19 +1,9 @@
 import AppBar from 'material-ui/AppBar';
-import {BottomNavigation, BottomNavigationItem}
+import { BottomNavigation, BottomNavigationItem }
   from 'material-ui/BottomNavigation';
 import FlatButton from 'material-ui/FlatButton';
-import FloatingActionButton from 'material-ui/FloatingActionButton';
-import FontIcon from 'material-ui/FontIcon';
-import Help from 'material-ui/svg-icons/action/help';
-import IconButton from 'material-ui/IconButton';
-import IconLocationOn from 'material-ui/svg-icons/communication/location-on';
-import LocalDining from 'material-ui/svg-icons/maps/restaurant';
 import Paper from 'material-ui/Paper';
-import Person from 'material-ui/svg-icons/action/account-circle';
-import PersonAdd from 'material-ui/svg-icons/content/add-circle';
 import React from 'react';
-import { red700, green700, orange500, brown700 }
-  from 'material-ui/styles/colors';
 import { withRouter } from 'react-router';
 
 
@@ -29,33 +19,19 @@ const App = React.createClass({
       cursor: 'pointer'
     };
 
-    const styleIcon = {
-      largeIcon: {
-        width: 150,
-        height: 150,
-      },
-      large: {
-        width: 180,
-        height: 180,
-      },
-    };
-
     const styleBottomNav = {
       backgroundColor: '#f2df8f',
       position: 'fixed',
       bottom: 0
     };
 
-    const style = {
-      height: 100,
-      width: '100%',
-      marginTop: 20,
-      textAlign: 'center',
-      display: 'inline-block',
+    const styleAddBarr = {
+      backgroundColor: '#f2df8f',
     };
 
     return <div>
       <AppBar
+        style={styleAddBarr}
         onTitleTouchTap={this.handleTitleTouchTap}
         title="Meal Wheel"
         titleStyle={styleTitle}
@@ -67,56 +43,11 @@ const App = React.createClass({
         />
       </AppBar>
 
-      <div>
-        <div className="buttonBox">
-          <IconButton
-            tooltip="New User"
-            touch={true}
-            tooltipPosition="bottom-right"
-            iconStyle={styleIcon.largeIcon}
-            style={styleIcon.large}
-          >
-            <PersonAdd color={red700} />
-          </IconButton>
-
-          <IconButton
-            tooltip="Login"
-            touch={true}
-            tooltipPosition="bottom-right"
-            iconStyle={styleIcon.largeIcon}
-            style={styleIcon.large}
-          >
-            <Person color={green700} />
-          </IconButton>
-        </div>
-
-        <div className="buttonBox">
-          <IconButton
-            tooltip="What We Do"
-            touch={true}
-            tooltipPosition="bottom-right"
-            iconStyle={styleIcon.largeIcon}
-            style={styleIcon.large}
-          >
-            <Help color={orange500} />
-          </IconButton>
-
-          <IconButton
-            tooltip="Lets Go!"
-            touch={true}
-            tooltipPosition="bottom-right"
-            iconStyle={styleIcon.largeIcon}
-            style={styleIcon.large}
-          >
-            <LocalDining color={brown700} />
-          </IconButton>
-        </div>
-      </div>
-
       <Paper zDepth={3}>
         <BottomNavigation style={styleBottomNav} />
       </Paper>
 
+      {this.props.children}
     </div>;
   }
 });
