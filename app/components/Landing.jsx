@@ -13,7 +13,6 @@ import { withRouter } from 'react-router';
 
 
 const Landing = React.createClass({
-
   render() {
     const styleIcon = {
       largeIcon: {
@@ -25,7 +24,6 @@ const Landing = React.createClass({
         height: 180,
       },
     };
-
 
     return <div>
       <img className="logo" src="./images/logo.jpg" />

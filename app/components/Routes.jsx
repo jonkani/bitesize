@@ -1,10 +1,11 @@
 import { browserHistory, IndexRoute, Route, Router } from 'react-router';
-import App from 'components/App';
+import App from 'components/app';
 import Registration from 'components/Registration';
 import Landing from 'components/Landing';
 import Login from 'components/Login';
 import About from 'components/About';
 import Search from 'components/Search';
+import Results from 'components/Results';
 import React from 'react';
 
 const Routes = React.createClass({
@@ -16,6 +17,7 @@ const Routes = React.createClass({
         <Route component={Login} path="/login" />
         <Route component={About} path="/about" />
         <Route component={Search} path="/search" />
+        <Route component={Results} path="/results" />
       </Route>
     </Router>;
   }
