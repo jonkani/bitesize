@@ -31,20 +31,19 @@ const App = React.createClass({
 
     return <div>
       <AppBar
+        className="appBarBun"
         style={styleAddBarr}
-        onTitleTouchTap={this.handleTitleTouchTap}
-        title="Meal Wheel"
         titleStyle={styleTitle}
       >
         <FlatButton
           style={styleFlatButton}
           onTouchTap={this.handleTouchTap}
-          label="New Post"
+          label="btn"
         />
       </AppBar>
 
       <Paper zDepth={3}>
-        <BottomNavigation style={styleBottomNav} />
+        <BottomNavigation style={styleBottomNav} className="appBarBun"/>
       </Paper>
 
       {this.props.children}

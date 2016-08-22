@@ -1,6 +1,6 @@
 import React from 'react';
 import Paper from 'material-ui/Paper';
-import { fullWhite, red700, green700, orange500, brown700 }
+import { fullWhite, red700, green600, yellow600, brown700 }
   from 'material-ui/styles/colors';
 import TextField from 'material-ui/TextField';
 import IconButton from 'material-ui/IconButton';
@@ -51,12 +51,11 @@ const Search = React.createClass({
     };
 
 
-    return <div><br />
-      <Paper zDepth={3} style={{ backgroundColor: red700 }}>
-        <p style={styleTitle}>Search:</p>
-      </Paper>
+    return <div>
 
-      <Paper zDepth={3} style={{ backgroundColor: green700 }}>
+      <img className="search" src="./images/search.jpg" />
+
+      <Paper className="paper" zDepth={3} style={{ backgroundColor: green600 }}>
         <Place />
         <TextField
           hintText="City or Zip"
@@ -67,7 +66,7 @@ const Search = React.createClass({
         />
       </Paper><br />
 
-      <Paper zDepth={3} style={{ backgroundColor: orange500 }}>
+      <Paper className="paper" zDepth={3} style={{ backgroundColor: yellow600 }}>
         <Keyword />
         <TextField
           hintText="sushi, lunch, Mexican"
@@ -77,18 +76,19 @@ const Search = React.createClass({
           floatingLabelFocusStyle={styleLocation.floatingLabelFocusStyle}
         />
       </Paper>
-
-      <Paper circle={true} zDepth={3} style={styleCircle}>
-        <IconButton
-          tooltip="Lets Go!"
-          touch={true}
-          tooltipPosition="bottom-right"
-          iconStyle={styleIcon.largeIcon}
-          style={styleIcon.large}
-        >
-          <LocalDining color={fullWhite}/>
-        </IconButton>
-      </Paper>
+      <div className="searchBtn">
+        <Paper circle={true} zDepth={3} style={styleCircle}>
+          <IconButton
+            tooltip="Lets Go!"
+            touch={true}
+            tooltipPosition="bottom-right"
+            iconStyle={styleIcon.largeIcon}
+            style={styleIcon.large}
+          >
+            <LocalDining color={fullWhite}/>
+          </IconButton>
+        </Paper>
+      </div>
     </div>;
   }
 });

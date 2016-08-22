@@ -66,9 +66,9 @@ const Registration = React.createClass({
 
 
     return <div>
-      <h1 className="regTitle">Register:</h1>
+      <h1>Register:</h1>
 
-      <Paper zDepth={3}>
+      <Paper zDepth={3} className="paper">
         <TextField
           hintText="Hint Text"
           floatingLabelText="Email"
@@ -78,7 +78,7 @@ const Registration = React.createClass({
         />
       </Paper><br />
 
-      <Paper zDepth={3}>
+      <Paper zDepth={3} className="paper">
         <TextField
           hintText="Password Field"
           floatingLabelText="Password"
@@ -89,7 +89,7 @@ const Registration = React.createClass({
         />
       </Paper><br />
 
-      <Paper zDepth={3}>
+      <Paper zDepth={3} className="paper">
         <SelectField
           floatingLabelText="Price"
           floatingLabelStyle={{ color: orange500 }}
@@ -100,7 +100,7 @@ const Registration = React.createClass({
         </SelectField>
       </Paper><br />
 
-      <Paper zDepth={3}>
+      <Paper zDepth={3} className="paper">
         <SelectField
           floatingLabelText="Distance"
           floatingLabelStyle={{ color: brown700 }}

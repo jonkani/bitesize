@@ -1,3 +1,30 @@
 body {
   margin: 0;
+  // background-color: #f6f6e0;
+}
+
+.appBarBun {
+  background-image: url('./images/bun.jpg');
+  background-size: cover;
+}
+
+.logo {
+  margin-top: 60px;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.paper {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.searchBtn {
+  margin-left: 80px;
+}
+
+.search {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: 75%;
 }

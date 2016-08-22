@@ -7,7 +7,7 @@ import Paper from 'material-ui/Paper';
 import Person from 'material-ui/svg-icons/action/account-circle';
 import PersonAdd from 'material-ui/svg-icons/content/add-circle';
 import React from 'react';
-import { red700, green700, orange500, brown700 }
+import { fullWhite, red700, green600, yellow600, brown700 }
   from 'material-ui/styles/colors';
 import { withRouter } from 'react-router';
 
@@ -26,8 +26,10 @@ const Landing = React.createClass({
       },
     };
 
+
     return <div>
-      <div className="buttonBox">
+      <img className="logo" src="./images/logo.jpg" />
+      <div>
         <IconButton
           tooltip="New User"
           touch={true}
@@ -45,11 +47,11 @@ const Landing = React.createClass({
           iconStyle={styleIcon.largeIcon}
           style={styleIcon.large}
         >
-          <Person color={green700} />
+          <Person color={green600} />
         </IconButton>
       </div>
 
-      <div className="buttonBox">
+      <div>
         <IconButton
           tooltip="What We Do"
           touch={true}
@@ -57,7 +59,7 @@ const Landing = React.createClass({
           iconStyle={styleIcon.largeIcon}
           style={styleIcon.large}
         >
-          <Help color={orange500} />
+          <Help color={yellow600} />
         </IconButton>
 
         <IconButton
