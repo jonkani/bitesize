@@ -1,5 +1,5 @@
 import { browserHistory, IndexRoute, Route, Router } from 'react-router';
-import App from 'components/app';
+import App from 'components/App';
 import Registration from 'components/Registration';
 import Landing from 'components/Landing';
 import Login from 'components/Login';

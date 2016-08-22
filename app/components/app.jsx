@@ -11,7 +11,11 @@ import { withRouter } from 'react-router';
 const App = React.createClass({
   getInitialState() {
     return {
-      restaurants: []
+      restaurants: [],
+      position: {
+        start: 0,
+        end: 4
+      }
     }
   },
 
@@ -65,7 +69,9 @@ const App = React.createClass({
       </Paper>
 
       {React.cloneElement(this.props.children, {
-        searchRestaurants: this.searchRestaurants
+        searchRestaurants: this.searchRestaurants,
+        restaurants: this.state.restaurants,
+        position: this.state.position
       })}
     </div>;
   }
