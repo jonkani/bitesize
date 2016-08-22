@@ -10,6 +10,27 @@ import Keyword from 'material-ui/svg-icons/action/search';
 
 
 const Search = React.createClass({
+  getInitialState(){
+    return {
+      search: {
+        location: '',
+        keyword: ''
+      }
+    }
+  },
+
+  handleChange(event) {
+    const nextSearch = Object.assign({}, this.state.search, {
+      [event.target.name]: event.target.value
+    });
+
+    this.setState({ search: nextSearch });
+  },
+
+  handleSubmit() {
+    this.props.searchRestaurants(this.state.search.location, this.state.search.keyword, 5);
+  },
+
   render() {
     const styleIcon = {
       largeIcon: {
@@ -50,7 +71,6 @@ const Search = React.createClass({
       color: fullWhite
     };
 
-
     return <div>
 
       <img className="search" src="./images/search.jpg" />
@@ -60,9 +80,12 @@ const Search = React.createClass({
         <TextField
           hintText="City or Zip"
           floatingLabelText="Location"
-          underlineStyle={styleLocation.underlineStyle}
           floatingLabelStyle={styleLocation.floatingLabelStyle}
           floatingLabelFocusStyle={styleLocation.floatingLabelFocusStyle}
+          onChange={this.handleChange}
+          name="location"
+          underlineStyle={styleLocation.underlineStyle}
+          value={this.state.search.location}
         />
       </Paper><br />
 
@@ -71,11 +94,15 @@ const Search = React.createClass({
         <TextField
           hintText="sushi, lunch, Mexican"
           floatingLabelText="Keyword"
-          underlineStyle={styleLocation.underlineStyle}
           floatingLabelStyle={styleLocation.floatingLabelStyle}
           floatingLabelFocusStyle={styleLocation.floatingLabelFocusStyle}
+          onChange={this.handleChange}
+          name="keyword"
+          underlineStyle={styleLocation.underlineStyle}
+          value={this.state.search.keyword}
         />
       </Paper>
+
       <div className="searchBtn">
         <Paper circle={true} zDepth={3} style={styleCircle}>
           <IconButton
@@ -83,6 +110,7 @@ const Search = React.createClass({
             touch={true}
             tooltipPosition="bottom-right"
             iconStyle={styleIcon.largeIcon}
+            onTouchTap={this.handleSubmit}
             style={styleIcon.large}
           >
             <LocalDining color={fullWhite}/>

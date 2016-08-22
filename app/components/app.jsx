@@ -1,4 +1,5 @@
 import AppBar from 'material-ui/AppBar';
+import axios from 'axios';
 import { BottomNavigation, BottomNavigationItem }
   from 'material-ui/BottomNavigation';
 import FlatButton from 'material-ui/FlatButton';
@@ -8,6 +9,23 @@ import { withRouter } from 'react-router';
 
 
 const App = React.createClass({
+  getInitialState() {
+    return {
+      restaurants: []
+    }
+  },
+
+  searchRestaurants(location, term, displayNumber) {
+    const search = { location, term, displayNumber };
+
+    axios.get('/api/search', {params: search})
+    .then((res) => {
+      this.setState({ restaurants: res.data.restaurants })
+    })
+    .catch((err) => {
+      console.error(err);
+    })
+  },
 
   render() {
     const styleFlatButton = {
@@ -46,7 +64,9 @@ const App = React.createClass({
         <BottomNavigation style={styleBottomNav} className="appBarBun"/>
       </Paper>
 
-      {this.props.children}
+      {React.cloneElement(this.props.children, {
+        searchRestaurants: this.searchRestaurants
+      })}
     </div>;
   }
 });
