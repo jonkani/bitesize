@@ -15,18 +15,22 @@ body {
 }
 
 .paper {
-  margin-left: 10px;
-  margin-right: 10px;
+  margin-left: 40px;
+  margin-right: 40px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .searchBtn {
-  margin-left: 80px;
+  margin-top: 10px !important;
+  margin-left: 100px !important;
 }
 
 .search {
   margin-top: 20px;
   margin-bottom: 20px;
   width: 75%;
+  margin-left: 40px;
 }
 
 .results {
@@ -34,4 +38,37 @@ body {
   margin-bottom: 10px;
   width: 70%;
   margin-left: 45px;
+}
+
+.bottomNav {
+  background-image: url('./images/bun.jpg');
+  background-size: cover;
+}
+
+.cheese {
+  background-image: url('./images/cheese.jpg');
+  background-size: cover;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.lettuce {
+  background-image: url('./images/lettuce.jpg');
+  background-size: cover;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.tomato {
+  background-image: url('./images/tomato.jpg');
+  background-size: cover;
+}
+
+.burger {
+  background-image: url('./images/burger.jpg');
+  background-size: cover;
+}
+
+.keyword {
+  background-color: yellow;
 }

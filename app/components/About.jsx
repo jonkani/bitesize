@@ -43,11 +43,6 @@ const About = React.createClass({
         />
       </AppBar>
 
-
-      <Paper zDepth={3}>
-        <BottomNavigation style={styleBottomNav} />
-      </Paper>
-
     </div>;
   }
 });

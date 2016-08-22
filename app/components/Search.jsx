@@ -71,40 +71,58 @@ const Search = React.createClass({
       color: fullWhite
     };
 
+    const styleForm = {
+
+    };
+
     return <div>
 
-      <img className="search" src="./images/search.jpg" />
-
-      <Paper className="paper" zDepth={3} style={{ backgroundColor: green600 }}>
-        <Place />
-        <TextField
-          hintText="City or Zip"
-          floatingLabelText="Location"
-          floatingLabelStyle={styleLocation.floatingLabelStyle}
-          floatingLabelFocusStyle={styleLocation.floatingLabelFocusStyle}
-          onChange={this.handleChange}
-          name="location"
-          underlineStyle={styleLocation.underlineStyle}
-          value={this.state.search.location}
-        />
-      </Paper><br />
-
-      <Paper className="paper" zDepth={3} style={{ backgroundColor: yellow600 }}>
-        <Keyword />
-        <TextField
-          hintText="sushi, lunch, Mexican"
-          floatingLabelText="Keyword"
-          floatingLabelStyle={styleLocation.floatingLabelStyle}
-          floatingLabelFocusStyle={styleLocation.floatingLabelFocusStyle}
-          onChange={this.handleChange}
-          name="keyword"
-          underlineStyle={styleLocation.underlineStyle}
-          value={this.state.search.keyword}
-        />
+      <Paper style={styleForm} className="tomato" >
+        <img className="search" src="./images/search.jpg" />
       </Paper>
 
-      <div className="searchBtn">
-        <Paper circle={true} zDepth={3} style={styleCircle}>
+      <Paper className="lettuce">
+        <Paper
+          className="paper"
+          zDepth={3}
+          style={{ backgroundColor: green600 }}
+        >
+          <Place />
+          <TextField
+            hintText="City or Zip"
+            floatingLabelText="Location"
+            floatingLabelStyle={styleLocation.floatingLabelStyle}
+            floatingLabelFocusStyle={styleLocation.floatingLabelFocusStyle}
+            onChange={this.handleChange}
+            name="location"
+            underlineStyle={styleLocation.underlineStyle}
+            value={this.state.search.location}
+          />
+        </Paper>
+      </Paper>
+
+      <Paper className="cheese">
+        <Paper
+          className="paper"
+          zDepth={3}
+          style={{ backgroundColor: yellow600 }}
+        >
+          <Keyword />
+          <TextField
+            hintText="sushi, lunch, Mexican"
+            floatingLabelText="Keyword"
+            floatingLabelStyle={styleLocation.floatingLabelStyle}
+            floatingLabelFocusStyle={styleLocation.floatingLabelFocusStyle}
+            onChange={this.handleChange}
+            name="keyword"
+            underlineStyle={styleLocation.underlineStyle}
+            value={this.state.search.keyword}
+          />
+        </Paper>
+      </Paper>
+
+      <div className="burger">
+        <Paper circle={true} zDepth={3} style={styleCircle} className="searchBtn">
           <IconButton
             tooltip="Lets Go!"
             touch={true}

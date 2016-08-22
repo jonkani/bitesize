@@ -6,6 +6,10 @@ import FlatButton from 'material-ui/FlatButton';
 import Paper from 'material-ui/Paper';
 import React from 'react';
 import { browserHistory, withRouter } from 'react-router';
+import LocalDining from 'material-ui/svg-icons/maps/restaurant';
+import Help from 'material-ui/svg-icons/action/help';
+import Person from 'material-ui/svg-icons/action/account-circle';
+import PersonAdd from 'material-ui/svg-icons/content/add-circle';
 
 
 const App = React.createClass({
@@ -45,7 +49,7 @@ const App = React.createClass({
     const styleBottomNav = {
       backgroundColor: '#f2df8f',
       position: 'fixed',
-      bottom: 0
+      bottom: 0,
     };
 
     const styleAddBarr = {
@@ -65,8 +69,25 @@ const App = React.createClass({
         />
       </AppBar>
 
-      <Paper zDepth={3}>
-        <BottomNavigation style={styleBottomNav} className="appBarBun"/>
+      <Paper zDepth={2}>
+        <BottomNavigation style={styleBottomNav} className="bottomNav">
+          <BottomNavigationItem
+            label="New User"
+            icon={<PersonAdd />}
+          />
+          <BottomNavigationItem
+            label="Login"
+            icon={<Person />}
+          />
+          <BottomNavigationItem
+            label="About"
+            icon={<Help />}
+          />
+          <BottomNavigationItem
+            label="Hungry!"
+            icon={<LocalDining />}
+          />
+        </BottomNavigation>
       </Paper>
 
       {React.cloneElement(this.props.children, {
