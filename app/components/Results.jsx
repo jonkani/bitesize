@@ -8,6 +8,8 @@ import { fullWhite, red700, green600, yellow600, brown700 }
 
 const Results = React.createClass({
   render() {
+    const { restaurants, position } = this.props;
+    const restaurantsView = restaurants.slice(position.start, position.end);
 
     return <div>
       <img className="results" src="./images/results.jpg"></img>
@@ -24,26 +26,34 @@ const Results = React.createClass({
           </TableRow>
         </TableHeader>
         <TableBody displayRowCheckbox={false}>
-          <TableRow style={{backgroundColor: red700, color: fullWhite}}>
-            <TableRowColumn style={{ width: 50 }}>4.9</TableRowColumn>
-            <TableRowColumn>Daniels Broiler</TableRowColumn>
-            <TableRowColumn style={{ width: 60}}>Steak</TableRowColumn>
+
+        {restaurantsView.map((restaurant, index) => {
+          const categories = restaurant.categoryList.reduce((a, b) => b += `, ${a}`);
+          let bgColor;
+
+          switch (index) {
+            case 0:
+              bgColor = red700;
+              break;
+            case 1:
+              bgColor = green600;
+              break;
+            case 2:
+              bgColor = yellow600;
+              break;
+            case 3:
+              bgColor = brown700;
+              break;
+            default:
+          }        
+
+          return <TableRow style={{backgroundColor: bgColor, color: fullWhite}}>
+            <TableRowColumn style={{ width: 50 }}>{restaurant.rating}</TableRowColumn>
+            <TableRowColumn>{restaurant.name}</TableRowColumn>
+            <TableRowColumn style={{ width: 60}}>{categories}</TableRowColumn>
           </TableRow>
-          <TableRow style={{backgroundColor: green600, color: fullWhite}}>
-            <TableRowColumn style={{ width: 50 }}>4.5</TableRowColumn>
-            <TableRowColumn>La Corona</TableRowColumn>
-            <TableRowColumn style={{ width: 60}}>Mexican</TableRowColumn>
-          </TableRow>
-          <TableRow style={{backgroundColor: yellow600, color: fullWhite}}>
-            <TableRowColumn style={{ width: 50 }}>4.0</TableRowColumn>
-            <TableRowColumn>Umi Sushe</TableRowColumn>
-            <TableRowColumn style={{ width: 60}}>Sushi</TableRowColumn>
-          </TableRow>
-          <TableRow style={{backgroundColor: brown700, color: fullWhite}}>
-            <TableRowColumn style={{ width: 50 }}>3.9</TableRowColumn>
-            <TableRowColumn>Jimmy Jones</TableRowColumn>
-            <TableRowColumn style={{ width: 60}}>Sandwich</TableRowColumn>
-          </TableRow>
+        })}
+
         </TableBody>
       </Table>
     </div>;

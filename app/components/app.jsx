@@ -5,7 +5,7 @@ import { BottomNavigation, BottomNavigationItem }
 import FlatButton from 'material-ui/FlatButton';
 import Paper from 'material-ui/Paper';
 import React from 'react';
-import { withRouter } from 'react-router';
+import { browserHistory, withRouter } from 'react-router';
 
 
 const App = React.createClass({
@@ -25,6 +25,7 @@ const App = React.createClass({
     axios.get('/api/search', {params: search})
     .then((res) => {
       this.setState({ restaurants: res.data.restaurants })
+      browserHistory.push('/results');
     })
     .catch((err) => {
       console.error(err);
