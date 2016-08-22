@@ -1,12 +1,18 @@
 'use strict'
 
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config({silent: true});
+}
+
 const express = require('express');
 const morgan = require('morgan');
 const path = require('path');
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
+
 const users = require('./routes/users');
 const token = require('./routes/token');
-const cookieParser = require('cookie-parser');
+const search = require('./routes/search');
 
 const app = express();
 
@@ -40,6 +46,7 @@ app.use(cookieParser());
 
 app.use('/api', users);
 app.use('/api', token);
+app.use('/api', search);
 
 app.use((_req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));

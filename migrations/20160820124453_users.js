@@ -6,7 +6,7 @@ exports.up = function(knex) {
     table.string('email').unique().notNullable().defaultTo('');
     table.specificType('hashed_password', 'char(60)').notNullable();
     table.integer('search_radius').notNullable().defaultTo(1);
-    table.integer('max_price').notNullable().defaultTo(4);
+    table.integer('min_rating').notNullable().defaultTo(1);
   })
 };
 

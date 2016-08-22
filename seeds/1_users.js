@@ -8,7 +8,7 @@ exports.seed = function(knex) {
         email: 'meal@wheel.com',
         hashed_password: '$2a$12$Q3fh1jeJZ2Q19Yr12aVOxO54a/IvBhS01qWCqxNAZc0ABRxq0NnYq',
         search_radius: 1,
-        max_price: 4
+        min_rating: 4
       }]);
     })
     .then(() => {

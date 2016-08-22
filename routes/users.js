@@ -41,7 +41,7 @@ router.post('/users', (req, res, next) => {
 
 // update user preferences
 router.patch('/users', checkAuth, (req, res, next) => {
-  const { maxPrice, searchRadius, disabled } = req.body;
+  const { minRating, searchRadius, disabled } = req.body;
   const id = req.token.userId;
   const compare = function(target, filterer) {
     return target.filter((item) => {
@@ -59,7 +59,7 @@ router.patch('/users', checkAuth, (req, res, next) => {
   knex('users')
     .where('id', id)
     .update({
-      max_price: maxPrice,
+      min_rating: minRating,
       search_radius: searchRadius
     })
     .then(() => {
@@ -108,7 +108,7 @@ router.patch('/users', checkAuth, (req, res, next) => {
 router.get('/users', checkAuth, (req, res, next) => {
   knex('users')
     .leftJoin('users_categories', 'users.id', 'user_id')
-    .select('max_price', 'search_radius', 'category_id')
+    .select('min_rating', 'search_radius', 'category_id')
     .where('users.id', req.token.userId)
     .then((response) => {
       res.send(camelizeKeys(response));

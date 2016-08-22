@@ -25,7 +25,7 @@ router.post('/token', (req, res, next) => {
     })
     .then(() => {
       const expiry = new Date(Date.now() + 1000 * 60 * 60 * 24 * 30);
-      const token = jwt.sign({ userId: user.id }, 'SECRET_KEY', { expiresIn: '30 days'});
+      const token = jwt.sign({ userId: user.id }, process.env.SECRET_KEY, { expiresIn: '30 days'});
 
       res.cookie('accessToken', token, {
         httpOnly: true,
@@ -37,7 +37,7 @@ router.post('/token', (req, res, next) => {
         secure: router.get('env') ===
         'production'
       });
-      
+
       res.sendStatus(200);
     })
     .catch(bcrypt.MISMATCH_ERROR, () => {
