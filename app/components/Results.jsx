@@ -7,6 +7,7 @@ import { fullWhite, red700, green600, yellow600, brown700 }
   from 'material-ui/styles/colors';
 import IconButton from 'material-ui/IconButton';
 import AvReplay from 'material-ui/svg-icons/av/replay';
+import ResultModal from 'components/ResultModal';
 
 const Results = React.createClass({
   handleTouchTap() {
@@ -25,6 +26,7 @@ const Results = React.createClass({
         }
       )
     }
+
     return <div>
       <img className="results" src="./images/results.jpg"></img>
       <IconButton tooltip="More restaurants!" onTouchTap={this.handleTouchTap}>
@@ -76,6 +78,7 @@ const Results = React.createClass({
 
         </TableBody>
       </Table>
+      <ResultModal />
     </div>;
   }
 });
