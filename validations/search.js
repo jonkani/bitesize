@@ -9,6 +9,7 @@ module.exports.get = {
       Joi.string().required(), Joi.number().required()
     ),
     term: Joi.string()
+      .allow('')
       .max(255),
     displayNumber: Joi.number()
       .required()

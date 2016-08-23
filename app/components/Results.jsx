@@ -7,11 +7,14 @@ import { fullWhite, red700, green600, yellow600, brown700 }
   from 'material-ui/styles/colors';
 import IconButton from 'material-ui/IconButton';
 import AvReplay from 'material-ui/svg-icons/av/replay';
-import ResultModal from 'components/ResultModal';
 
 const Results = React.createClass({
   handleTouchTap() {
     this.props.nextRestaurants();
+  },
+
+  handleRowTouch(restaurant) {
+    this.props.setModal(restaurant);
   },
 
   render() {
@@ -69,6 +72,7 @@ const Results = React.createClass({
           return <TableRow
               style={{backgroundColor: bgColor, color: fullWhite}}
               key={index}
+              onTouchTap={() => this.handleRowTouch(restaurant)}
             >
             <TableRowColumn style={{ width: 50 }}>{restaurant.rating}</TableRowColumn>
             <TableRowColumn>{restaurant.name}</TableRowColumn>
@@ -78,7 +82,6 @@ const Results = React.createClass({
 
         </TableBody>
       </Table>
-      <ResultModal />
     </div>;
   }
 });

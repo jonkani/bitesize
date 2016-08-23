@@ -10,6 +10,7 @@ import LocalDining from 'material-ui/svg-icons/maps/restaurant';
 import Help from 'material-ui/svg-icons/action/help';
 import Person from 'material-ui/svg-icons/action/account-circle';
 import PersonAdd from 'material-ui/svg-icons/content/add-circle';
+import ResultModal from 'components/ResultModal';
 
 const App = React.createClass({
   getInitialState() {
@@ -18,8 +19,24 @@ const App = React.createClass({
       position: {
         start: 0,
         end: 4
+      },
+      modal: {
+        open: false,
+        restaurant: {}
       }
     }
+  },
+
+  setModal(restaurant) {
+    const newModal = Object.assign({}, this.state.modal, { open: true, restaurant: restaurant });
+
+    this.setState({ modal: newModal });
+  },
+
+  closeModal() {
+    const newModal = Object.assign({}, this.state.modal, { open: false, restaurant: {} });
+
+    this.setState({ modal: newModal });
   },
 
   searchRestaurants(location, term, displayNumber) {
@@ -119,8 +136,13 @@ const App = React.createClass({
         searchRestaurants: this.searchRestaurants,
         restaurants: this.state.restaurants,
         nextRestaurants: this.nextRestaurants,
+        setModal: this.setModal,
         position: this.state.position
       })}
+      <ResultModal
+        modalData = {this.state.modal}
+        closeModal = {this.closeModal}
+      />
     </div>;
   }
 });

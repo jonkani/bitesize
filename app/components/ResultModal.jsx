@@ -8,22 +8,13 @@ import { red700, green700, yellow600, brown700 }
 
 
 const ResultModal = React.createClass({
-  getInitialState() {
-    return {
-      open: false,
-    }
-  },
-
-  handleOpen() {
-    this.setState({open: true});
-  },
-
   handleClose() {
-    this.setState({open: false});
+    this.props.closeModal();
   },
-
 
   render() {
+    const restaurant = this.props.modalData.restaurant
+
     const styleDialog = {
       width: '100%',
       maxWidth: 'none',
@@ -31,9 +22,9 @@ const ResultModal = React.createClass({
 
     const actions =
       <div>
-        <p style={{display: 'inline-block', marginRight: '125px'}}>rating / # of ratings</p>
+        <p style={{display: 'inline-block', marginRight: '125px'}}>Rating: {restaurant.rating} | {restaurant.reviewCount} reviews</p>
         <FlatButton
-          label="Cancel"
+          label="Close"
           onTouchTap={this.handleClose}
           style={{backgroundColor: red700}}
         />
@@ -41,24 +32,31 @@ const ResultModal = React.createClass({
 
     return (
       <div>
-        <RaisedButton label="Dialog" onTouchTap={this.handleOpen} />
         <Dialog
           actions={actions}
           contentStyle={styleDialog}
           modal={false}
-          open={this.state.open}
+          open={this.props.modalData.open}
           onRequestClose={this.handleClose}
         >
         <div>
-          <Paper circle={true} style={{height: '100px', width: '100px', display: 'inline-block'}} />
+          <Paper circle={true} style={{height: '100px', width: '100px', display: 'inline-block'}}>
+            <img src={restaurant.imageUrl} />
+          </Paper>
           <div style={{display: 'inline-block', marginLeft: '15px'}}>
-            <h3 className="resultForm">Name of Restaurant</h3>
-            <h5 className="resultForm">street</h5>
-            <h5 className="resultForm">city, state, zip</h5>
-            <h6 className="resultForm">phone #</h6>
+            <h3 className="resultForm">
+              <a href={restaurant.url}>
+                {restaurant.name}
+              </a>
+            </h3>
+            <h5 className="resultForm">{restaurant.location ? restaurant.location[0]: ''}</h5>
+            <h5 className="resultForm">{restaurant.location ? restaurant.location[1]: ''}</h5>
+            <h5 className="resultForm">{restaurant.location ? restaurant.location[2]: ''}</h5>
+            <h5 className="resultForm">{restaurant.location ? restaurant.location[3]: ''}</h5>
+            <h6 className="resultForm">{restaurant.displayPhone}</h6>
           </div>
         </div>
-          <p>This is where the restaurant snippet will go.</p>
+          <p>{restaurant.snippetText}</p>
         </Dialog>
       </div>
     );

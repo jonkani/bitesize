@@ -13,7 +13,7 @@ const router = express.Router();
 
 router.get('/search', ev(validations.get), (req, res, next) => {
   const { location, term, displayNumber } =  req.query;
-  let query = `https://api.yelp.com/v2/search/?location=${location.trim()}&actionlinks=true&sort=2&limit=20`
+  let query = `https://api.yelp.com/v2/search/?category_filter=restaurants&location=${location.trim()}&actionlinks=true&sort=2&limit=20`
   let id = null;
   let minRating;
   let searchRadius;
