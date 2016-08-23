@@ -11,7 +11,6 @@ import Help from 'material-ui/svg-icons/action/help';
 import Person from 'material-ui/svg-icons/action/account-circle';
 import PersonAdd from 'material-ui/svg-icons/content/add-circle';
 
-
 const App = React.createClass({
   getInitialState() {
     return {
@@ -78,6 +77,10 @@ const App = React.createClass({
       backgroundColor: '#f2df8f',
     };
 
+    const styleBottonIcon = {
+      marginLeft: '25px'
+    };
+
     return <div>
       <AppBar
         className="appBarBun"
@@ -95,19 +98,19 @@ const App = React.createClass({
         <BottomNavigation style={styleBottomNav} className="bottomNav">
           <BottomNavigationItem
             label="New User"
-            icon={<PersonAdd />}
+            icon={<PersonAdd style={styleBottonIcon}/>}
           />
           <BottomNavigationItem
             label="Login"
-            icon={<Person />}
+            icon={<Person style={styleBottonIcon}/>}
           />
           <BottomNavigationItem
             label="About"
-            icon={<Help />}
+            icon={<Help style={styleBottonIcon}/>}
           />
           <BottomNavigationItem
             label="Hungry!"
-            icon={<LocalDining />}
+            icon={<LocalDining style={styleBottonIcon}/>}
           />
         </BottomNavigation>
       </Paper>

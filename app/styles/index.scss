@@ -72,3 +72,36 @@ body {
 .keyword {
   background-color: yellow;
 }
+
+.tomatoIcon {
+  background-image: url('./images/tomatoIcon.jpg');
+}
+
+.burgerIcon {
+  background-image: url('./images/burgerIcon.jpg');
+}
+
+.lettuceIcon {
+  background-image: url('./images/lettuceIcon.jpg');
+}
+
+.cheeseIcon {
+  background-image: url('./images/cheeseIcon.jpg');
+}
+
+.regForm {
+  height: 75px;
+  width: 75px;
+  background-size: cover;
+  display: inline-block;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+.regFormInput {
+  margin-left: 10px;
+}
+
+.raisedBtn {
+  margin-left: 60px;
+}

@@ -9,15 +9,15 @@ import MenuItem from 'material-ui/MenuItem';
 import RaisedButton from 'material-ui/RaisedButton';
 import Cancel from 'material-ui/svg-icons/navigation/cancel';
 import Paper from 'material-ui/Paper';
-import { red700, green700, orange500, brown700 }
+import { red700, green700, yellow600, brown700 }
   from 'material-ui/styles/colors';
 import { withRouter } from 'react-router';
 
-const price = [
-  <MenuItem key={1} value={1} primaryText="$" />,
-  <MenuItem key={2} value={2} primaryText="$$" />,
-  <MenuItem key={3} value={3} primaryText="$$$" />,
-  <MenuItem key={4} value={4} primaryText="$$$$" />,
+const rating = [
+  <MenuItem key={1} value={1} primaryText="1.0" />,
+  <MenuItem key={2} value={2} primaryText="2.0" />,
+  <MenuItem key={3} value={3} primaryText="3.0" />,
+  <MenuItem key={4} value={4} primaryText="4.0" />,
 ];
 
 const items = [
@@ -30,8 +30,8 @@ const Registration = React.createClass({
   render() {
 
     const styleRaisedButton = {
-      marginLeft: '10%',
-      marginTop: '40px',
+      marginLeft: '20px',
+      marginTop: '20px',
     };
 
     const styleEmail = {
@@ -66,20 +66,26 @@ const Registration = React.createClass({
 
 
     return <div>
-      <h1>Register:</h1>
+      <img className="results" src="./images/registration.jpg"></img>
 
-      <Paper zDepth={3} className="paper">
+      <div>
+        <Paper className="tomatoIcon regForm" circle={true}></Paper>
+
         <TextField
+          className="regFormInput"
           hintText="Hint Text"
           floatingLabelText="Email"
           underlineStyle={styleEmail.underlineStyle}
           floatingLabelStyle={styleEmail.floatingLabelStyle}
           floatingLabelFocusStyle={styleEmail.floatingLabelFocusStyle}
         />
-      </Paper><br />
+      </div>
 
-      <Paper zDepth={3} className="paper">
+      <div>
+        <Paper className="lettuceIcon regForm" circle={true}></Paper>
+
         <TextField
+          className="regFormInput"
           hintText="Password Field"
           floatingLabelText="Password"
           type="password"
@@ -87,21 +93,28 @@ const Registration = React.createClass({
           floatingLabelStyle={stylePassword.floatingLabelStyle}
           floatingLabelFocusStyle={stylePassword.floatingLabelFocusStyle}
         />
-      </Paper><br />
+      </div>
 
-      <Paper zDepth={3} className="paper">
+      <div>
+        <Paper className="cheeseIcon regForm" circle={true}></Paper>
+
         <SelectField
-          floatingLabelText="Price"
-          floatingLabelStyle={{ color: orange500 }}
-          underlineStyle={{ borderColor: orange500 }}
+          className="regFormInput"
+          floatingLabelText="Minimum Rating"
+          floatingLabelStyle={{ color: yellow600 }}
+          underlineStyle={{ borderColor: yellow600 }}
           hintText="Hint text"
         >
-          {price}
+          {rating}
         </SelectField>
-      </Paper><br />
+      </div>
 
-      <Paper zDepth={3} className="paper">
+      <div>
+        <Paper className="burgerIcon regForm" circle={true}></Paper>
+
         <SelectField
+          style={{marginTop: 20}}
+          className="regFormInput"
           floatingLabelText="Distance"
           floatingLabelStyle={{ color: brown700 }}
           underlineStyle={{ borderColor: brown700 }}
@@ -109,20 +122,21 @@ const Registration = React.createClass({
         >
           {items}
         </SelectField>
-      </Paper><br />
+      </div>
 
+      <div className="raisedBtn">
+        <RaisedButton
+          icon={<Satisfied />}
+          label="Save"
+          style={styleRaisedButton}
+        />
 
-      <RaisedButton
-        icon={<Dissatisfied />}
-        label="Cancel"
-        style={styleRaisedButton}
-      />
-
-      <RaisedButton
-        icon={<Satisfied />}
-        label="Save"
-        style={styleRaisedButton}
-      />
+        <RaisedButton
+          icon={<Dissatisfied />}
+          label="Cancel"
+          style={styleRaisedButton}
+        />
+      </div>
     </div>;
   }
 });
