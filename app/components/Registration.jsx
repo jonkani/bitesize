@@ -1,5 +1,6 @@
 import AssignmentReturned
   from 'material-ui/svg-icons/action/assignment-returned';
+import axios from 'axios';
 import React from 'react';
 import Dissatisfied from 'material-ui/svg-icons/social/sentiment-dissatisfied';
 import Satisfied from 'material-ui/svg-icons/social/sentiment-satisfied'
@@ -13,21 +14,65 @@ import { red700, green700, yellow600, brown700 }
   from 'material-ui/styles/colors';
 import { withRouter } from 'react-router';
 
-const rating = [
-  <MenuItem key={1} value={1} primaryText="1.0" />,
-  <MenuItem key={2} value={2} primaryText="2.0" />,
-  <MenuItem key={3} value={3} primaryText="3.0" />,
-  <MenuItem key={4} value={4} primaryText="4.0" />,
-];
-
-const items = [
-  <MenuItem key={1} value={1} primaryText="1 mile" />,
-  <MenuItem key={2} value={2} primaryText="2 miles" />,
-  <MenuItem key={3} value={3} primaryText="3 miles" />,
-];
-
 const Registration = React.createClass({
+  getInitialState() {
+    return {
+      user: {
+        email: '',
+        password: '',
+        minRating: '',
+        searchRadius: ''
+      }
+    }
+  },
+
+  handleRatingChange(event, index, value) {
+    const nextUser = Object.assign({}, this.state.user, {
+      minRating: value
+    });
+    this.setState({ user: nextUser });
+  },
+
+  handleRadiusChange(event, index, value) {
+    const nextUser = Object.assign({}, this.state.user, {
+      searchRadius: value
+    });
+    this.setState({ user: nextUser });
+  },
+
+  handleTextChange(event) {
+    const nextUser = Object.assign({}, this.state.user, {
+      [event.target.name]: event.target.value
+    });
+
+    this.setState({ user: nextUser });
+  },
+
+  handleRegister() {
+    const user = this.state.user;
+    axios.post('/api/users', user)
+    .then(() => {
+      console.log('Success!');
+    })
+    .catch((err) => {
+      console.error(err);
+    })
+  },
+
   render() {
+
+    const rating = [
+      <MenuItem key={1} value={1} primaryText="1.0" />,
+      <MenuItem key={2} value={2} primaryText="2.0" />,
+      <MenuItem key={3} value={3} primaryText="3.0" />,
+      <MenuItem key={4} value={4} primaryText="4.0" />,
+    ];
+
+    const items = [
+      <MenuItem key={1} value={1} primaryText="1 mile" />,
+      <MenuItem key={2} value={2} primaryText="2 miles" />,
+      <MenuItem key={3} value={3} primaryText="3 miles" />,
+    ];
 
     const styleRaisedButton = {
       marginLeft: '20px',
@@ -64,6 +109,7 @@ const Registration = React.createClass({
       },
     };
 
+    const user = this.state.user;
 
     return <div>
       <img className="results" src="./images/registration.jpg"></img>
@@ -73,11 +119,14 @@ const Registration = React.createClass({
 
         <TextField
           className="regFormInput"
-          hintText="Hint Text"
+          hintText="What's your email?"
           floatingLabelText="Email"
+          name="email"
+          onChange={this.handleTextChange}
           underlineStyle={styleEmail.underlineStyle}
           floatingLabelStyle={styleEmail.floatingLabelStyle}
           floatingLabelFocusStyle={styleEmail.floatingLabelFocusStyle}
+          value={user.email}
         />
       </div>
 
@@ -86,12 +135,15 @@ const Registration = React.createClass({
 
         <TextField
           className="regFormInput"
-          hintText="Password Field"
+          hintText="8 characters or more!"
           floatingLabelText="Password"
+          name="password"
+          onChange={this.handleTextChange}
           type="password"
           underlineStyle={stylePassword.underlineStyle}
           floatingLabelStyle={stylePassword.floatingLabelStyle}
           floatingLabelFocusStyle={stylePassword.floatingLabelFocusStyle}
+          value={user.password}
         />
       </div>
 
@@ -102,8 +154,10 @@ const Registration = React.createClass({
           className="regFormInput"
           floatingLabelText="Minimum Rating"
           floatingLabelStyle={{ color: yellow600 }}
+          onChange={this.handleRatingChange}
+          name="minRating"
           underlineStyle={{ borderColor: yellow600 }}
-          hintText="Hint text"
+          value={user.minRating}
         >
           {rating}
         </SelectField>
@@ -113,12 +167,14 @@ const Registration = React.createClass({
         <Paper className="burgerIcon regForm" circle={true}></Paper>
 
         <SelectField
-          style={{marginTop: 20}}
           className="regFormInput"
           floatingLabelText="Distance"
           floatingLabelStyle={{ color: brown700 }}
+          onChange={this.handleRadiusChange}
+          name="searchRadius"
+          style={{marginTop: 20}}
           underlineStyle={{ borderColor: brown700 }}
-          hintText="Hint text"
+          value={user.searchRadius}
         >
           {items}
         </SelectField>
@@ -129,6 +185,7 @@ const Registration = React.createClass({
           icon={<Satisfied />}
           label="Save"
           style={styleRaisedButton}
+          onTouchTap={this.handleRegister}
         />
 
         <RaisedButton
