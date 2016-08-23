@@ -36,8 +36,8 @@ const App = React.createClass({
   },
 
   nextRestaurants() {
-    let newStart = this.state.position.start
-    let newEnd = this.state.position.end
+    let newStart = this.state.position.start;
+    let newEnd = this.state.position.end;
     const resArr = this.state.restaurants;
     if (newEnd > resArr.length - 1) {
       newStart = 0;
