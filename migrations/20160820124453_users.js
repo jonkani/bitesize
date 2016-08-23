@@ -5,7 +5,7 @@ exports.up = function(knex) {
     table.increments();
     table.string('email').unique().notNullable().defaultTo('');
     table.specificType('hashed_password', 'char(60)').notNullable();
-    table.integer('search_radius').notNullable().defaultTo(1);
+    table.integer('search_radius').notNullable().defaultTo(2);
     table.integer('min_rating').notNullable().defaultTo(1);
   })
 };

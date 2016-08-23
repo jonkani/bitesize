@@ -14,6 +14,16 @@ module.exports.post = {
       .label('Password')
       .trim()
       .required(),
+    minRating: Joi.number()
+      .label('Minimum Rating')
+      .min(1)
+      .max(4)
+      .required(),
+    searchRadius: Joi.number()
+      .label('Search Radius')
+      .min(1)
+      .max(3)
+      .required(),
   }
 };
 
