@@ -1,15 +1,17 @@
 'use strict'
 
+const ev = require('express-validation');
 const bcrypt = require('bcrypt-as-promised');
 const boom = require('boom');
 const express = require('express');
+const validations = require('../validations/token');
 const knex = require('../knex');
 const { camelizeKeys } = require('humps');
 const jwt = require('jsonwebtoken');
 
 const router = express.Router();
 
-router.post('/token', (req, res, next) => {
+router.post('/token', ev(validations.post), (req, res, next) => {
   let user;
 
   knex('users')

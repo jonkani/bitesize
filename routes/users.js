@@ -5,12 +5,14 @@ const express = require('express');
 const bcrypt = require('bcrypt-as-promised');
 const boom = require('boom');
 const humps = require('humps');
-const { camelizeKeys, decamelizeKeys } = require('humps')
+const ev = require('express-validation');
+const validations = require('../validations/users');
+const { camelizeKeys, decamelizeKeys } = require('humps');
 const { checkAuth } = require('./middleware');
 const router = express.Router();
 
 // create user
-router.post('/users', (req, res, next) => {
+router.post('/users', ev(validations.post), (req, res, next) => {
   const { email, password } = req.body;
 
   knex('users')
@@ -40,7 +42,7 @@ router.post('/users', (req, res, next) => {
 });
 
 // update user preferences
-router.patch('/users', checkAuth, (req, res, next) => {
+router.patch('/users', checkAuth, ev(validations.patch), (req, res, next) => {
   const { minRating, searchRadius, disabled } = req.body;
   const id = req.token.userId;
   const compare = function(target, filterer) {
@@ -69,9 +71,8 @@ router.patch('/users', checkAuth, (req, res, next) => {
     })
     .then((result) => {
       const parsed = result.map((element) => element['category_id']);
-      const disabledParsed = JSON.parse(disabled);
-      toSubtract = compare(parsed, disabledParsed);
-      toAdd = compare(disabledParsed, parsed);
+      toSubtract = compare(parsed, disabled);
+      toAdd = compare(disabled, parsed);
       const promisePile = [];
 
       for (const item of toSubtract) {

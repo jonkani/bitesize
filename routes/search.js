@@ -3,14 +3,15 @@
 const knex = require('../knex');
 const express = require('express');
 const boom = require('boom');
-const humps = require('humps');
+const ev = require('express-validation');
+const validations = require('../validations/search')
 const { camelizeKeys, decamelizeKeys } = require('humps')
 const OAuth = require('oauth');
 const jwt = require('jsonwebtoken');
 const { checkAuth } = require('./middleware');
 const router = express.Router();
 
-router.get('/search', (req, res, next) => {
+router.get('/search', ev(validations.get), (req, res, next) => {
   const { location, term, displayNumber } =  req.query;
   let query = `https://api.yelp.com/v2/search/?location=${location.trim()}&actionlinks=true&sort=2&limit=20`
   let id = null;

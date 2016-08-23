@@ -28,7 +28,7 @@ const Search = React.createClass({
   },
 
   handleSubmit() {
-    this.props.searchRestaurants(this.state.search.location, this.state.search.keyword, 5);
+    this.props.searchRestaurants(this.state.search.location, this.state.search.keyword, 4);
   },
 
   render() {
