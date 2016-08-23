@@ -36,6 +36,28 @@ const App = React.createClass({
     })
   },
 
+  nextRestaurants() {
+    let newStart = this.state.position.start
+    let newEnd = this.state.position.end
+    const resArr = this.state.restaurants;
+    if (newEnd > resArr.length - 1) {
+      newStart = 0;
+      newEnd = 4;
+    }
+    else if (newEnd + 4 > resArr.length - 1) {
+      newEnd = resArr.length;
+      newStart += 4;
+    }
+    else {
+      newStart += 4;
+      newEnd += 4;
+    }
+
+    const newPostion = Object.assign({}, this.state.position, { start: newStart, end: newEnd });
+
+    this.setState({ position: newPostion });
+  },
+
   render() {
     const styleFlatButton = {
       height: '64px',
@@ -93,6 +115,7 @@ const App = React.createClass({
       {React.cloneElement(this.props.children, {
         searchRestaurants: this.searchRestaurants,
         restaurants: this.state.restaurants,
+        nextRestaurants: this.nextRestaurants,
         position: this.state.position
       })}
     </div>;
