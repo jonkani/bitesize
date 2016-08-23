@@ -77,7 +77,8 @@ router.get('/search', ev(validations.get), (req, res, next) => {
           categories,
           display_phone,
           snippet_text,
-          review_count
+          review_count,
+          image_url
         } = element;
 
         const categoryList = categories.map((item) => {
@@ -91,7 +92,8 @@ router.get('/search', ev(validations.get), (req, res, next) => {
           categoryList,
           display_phone,
           snippet_text,
-          review_count
+          review_count,
+          image_url
         };
 
         restaurant.location = element.location.display_address;
