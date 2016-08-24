@@ -109,30 +109,48 @@ const App = React.createClass({
     const styleBottonIcon = {
       marginLeft: '25px'
     };
+    const styleSelected = {
+      marginLeft: '25px',
+      color: '#f2df8f'
+    };
+
+    const pathLoc = (this.props.routes[1].path || '');
 
     const navArray = [
       <BottomNavigationItem
       label="Login"
-      icon={<Person style={styleBottonIcon}/>}
+      icon={<Person
+        style={styleBottonIcon}
+        color={pathLoc === '/login' ? 'red' : ''}
+      />}
       onTouchTap={() => {browserHistory.push('/login')}}
       key="login"
       />,
       <BottomNavigationItem
         label="New User"
-        icon={<PersonAdd style={styleBottonIcon}/>}
+        icon={<PersonAdd
+          style={styleBottonIcon}
+          color={pathLoc === '/registration' ? 'red' : ''}
+        />}
         onTouchTap={() => {browserHistory.push('/registration')}}
         key="new"
       />,
       <BottomNavigationItem
         label="About"
-        icon={<Help style={styleBottonIcon}/>}
+        icon={<Help
+          style={styleBottonIcon}
+          color={pathLoc === '/about' ? 'red' : ''}
+        />}
         onTouchTap={() => {browserHistory.push('/about')}}
         key="about"
       />,
       <BottomNavigationItem
         label="Hungry!"
-        icon={<LocalDining style={styleBottonIcon}/>}
-        onTouchTap={() => {browserHistory.push('/search')}}
+        icon={<LocalDining
+          style={styleBottonIcon}
+          color={pathLoc === '' ? 'red' : ''}
+        />}
+        onTouchTap={() => {browserHistory.push('/')}}
         key="search"
       />
     ];
@@ -161,11 +179,6 @@ const App = React.createClass({
         titleStyle={styleTitle}
         showMenuIconButton={false}
       >
-        {/* <FlatButton
-          style={styleFlatButton}
-          onTouchTap={this.handleTouchTap}
-          label="btn"
-        /> */}
       </AppBar>
 
       <Paper zDepth={2}>
