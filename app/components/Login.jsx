@@ -33,7 +33,8 @@ const Login = React.createClass({
     axios.post('/api/token', login)
     .then(() => {
       console.log('Success!');
-      browserHistory.push('/search');
+      browserHistory.push('/');
+      this.props.setToast(true, 'Login successful!');
     })
     .catch((err) => {
       console.error(err);

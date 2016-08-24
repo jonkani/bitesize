@@ -13,6 +13,7 @@ import Settings from 'material-ui/svg-icons/action/settings';
 import PowerSettings from 'material-ui/svg-icons/action/power-settings-new';
 import PersonAdd from 'material-ui/svg-icons/content/add-circle';
 import ResultModal from 'components/ResultModal';
+import Snackbar from 'material-ui/Snackbar';
 
 const App = React.createClass({
   getInitialState() {
@@ -25,6 +26,10 @@ const App = React.createClass({
       modal: {
         open: false,
         restaurant: {}
+      },
+      toast: {
+        open: false,
+        message: ''
       }
     }
   },
@@ -39,6 +44,12 @@ const App = React.createClass({
     const newModal = Object.assign({}, this.state.modal, { open: false, restaurant: {} });
 
     this.setState({ modal: newModal });
+  },
+
+  setToast(state, message) {
+    const newToast = Object.assign({}, this.state.toast, { open: state, message: message });
+
+    this.setState({ toast : newToast })
   },
 
   searchRestaurants(location, term, displayNumber) {
@@ -80,6 +91,7 @@ const App = React.createClass({
     axios.delete('api/token')
     .then(() => {
       browserHistory.push('/');
+      this.setToast(true, 'Logged out!');
     })
     .catch((err) => {
       console.error(err);
@@ -195,12 +207,20 @@ const App = React.createClass({
         searchRestaurants: this.searchRestaurants,
         restaurants: this.state.restaurants,
         nextRestaurants: this.nextRestaurants,
+        setToast: this.setToast,
         setModal: this.setModal,
         position: this.state.position
       })}
       <ResultModal
         modalData = {this.state.modal}
         closeModal = {this.closeModal}
+      />
+      <Snackbar
+        open = {this.state.toast.open}
+        message = {this.state.toast.message}
+        autoHideDuration={2500}
+        onRequestClose={() => {this.setToast(false, '')}}
+        onTouchTap={() => {this.setToast(false, '')}}
       />
     </div>;
   }

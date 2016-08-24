@@ -55,6 +55,7 @@ const Registration = React.createClass({
     .then(() => {
       console.log('Success!');
       browserHistory.push('/login');
+      this.props.setToast(true, 'Thanks for signing up! Go ahead and log in.');
     })
     .catch((err) => {
       console.error(err);

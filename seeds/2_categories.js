@@ -77,7 +77,7 @@ exports.seed = function(knex) {
       },
       {
         id: 19,
-        name: 'African'
+        name: 'Gastropub'
       },
       {
         id: 20,
