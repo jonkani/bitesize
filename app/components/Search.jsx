@@ -77,7 +77,7 @@ const Search = React.createClass({
 
     return <div>
 
-      <Paper style={styleForm} className="tomato paperSearch" >
+      <Paper zDepth={3} style={styleForm} className="tomato paperSearch" >
         <img className="search" src="./images/search.jpg" />
       </Paper>
 
