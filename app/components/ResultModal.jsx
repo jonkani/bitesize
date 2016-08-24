@@ -49,10 +49,11 @@ const ResultModal = React.createClass({
                 {restaurant.name}
               </a>
             </h3>
-            <h5 className="resultForm">{restaurant.location ? restaurant.location[0]: ''}</h5>
-            <h5 className="resultForm">{restaurant.location ? restaurant.location[1]: ''}</h5>
-            <h5 className="resultForm">{restaurant.location ? restaurant.location[2]: ''}</h5>
-            <h5 className="resultForm">{restaurant.location ? restaurant.location[3]: ''}</h5>
+            {restaurant.location ? restaurant.location.map((element, index) => {
+              return <h5 className="resultForm" key={index}>
+                {restaurant.location[index]}
+              </h5>
+            }) : <h5></h5>}
             <h6 className="resultForm">{restaurant.displayPhone}</h6>
           </div>
         </div>
