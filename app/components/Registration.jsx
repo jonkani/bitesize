@@ -54,7 +54,7 @@ const Registration = React.createClass({
     axios.post('/api/users', user)
     .then(() => {
       console.log('Success!');
-      browserHistory.push('/search');
+      browserHistory.push('/login');
     })
     .catch((err) => {
       console.error(err);
@@ -153,7 +153,7 @@ const Registration = React.createClass({
 
         <SelectField
           className="regFormInput"
-          floatingLabelText="Minimum Rating"
+          floatingLabelText="Minimum Yelp Rating"
           floatingLabelStyle={{ color: yellow600 }}
           onChange={this.handleRatingChange}
           name="minRating"
@@ -169,7 +169,7 @@ const Registration = React.createClass({
 
         <SelectField
           className="regFormInput"
-          floatingLabelText="Distance"
+          floatingLabelText="Search Radius"
           floatingLabelStyle={{ color: brown700 }}
           onChange={this.handleRadiusChange}
           name="searchRadius"

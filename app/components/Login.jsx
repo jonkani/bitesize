@@ -109,7 +109,7 @@ const Login = React.createClass({
       <div className="raisedBtn">
         <RaisedButton
           icon={<Satisfied />}
-          label="Save"
+          label="Login"
           style={styleRaisedButton}
           onTouchTap={this.handleLogin}
         />

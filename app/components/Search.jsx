@@ -108,7 +108,7 @@ const Search = React.createClass({
           <Keyword />
           <TextField
             hintText="Sushi, lunch, Mexican, etc."
-            floatingLabelText="Keyword"
+            floatingLabelText="Keyword (optional)"
             floatingLabelStyle={styleLocation.floatingLabelStyle}
             floatingLabelFocusStyle={styleLocation.floatingLabelFocusStyle}
             onChange={this.handleChange}
