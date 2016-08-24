@@ -6,6 +6,7 @@ import Login from 'components/Login';
 import About from 'components/About';
 import Search from 'components/Search';
 import Results from 'components/Results';
+import Preferences from 'components/Preferences';
 import React from 'react';
 
 const Routes = React.createClass({
@@ -18,6 +19,7 @@ const Routes = React.createClass({
         <Route component={About} path="/about" />
         <Route component={Search} path="/search" />
         <Route component={Results} path="/results" />
+        <Route component={Preferences} path="/preferences" />
       </Route>
     </Router>;
   }

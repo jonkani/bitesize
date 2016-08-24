@@ -12,10 +12,6 @@ const muiTheme = getMuiTheme({
   flatButton: {
     buttonFilterColor: blue700,
     textColor: 'white'
-  },
-
-  palette: {
-    primary1Color: '#FFFFFF',
   }
 });
 

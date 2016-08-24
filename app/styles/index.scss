@@ -183,3 +183,29 @@ body {
   margin-top: 50px;
   width: 160px;
 }
+
+.container {
+  display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: flex-start;
+    align-items: center;
+  height: 275px;
+}
+
+.item {
+  height: 20px;
+  width: 125px;
+  font-size: 11px;
+  margin-bottom: 12px;
+}
+
+.prefSelect {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.burgerList {
+  width: 50px;
+}

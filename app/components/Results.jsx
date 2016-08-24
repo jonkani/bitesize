@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { withRouter } from 'react-router';
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn}
   from 'material-ui/Table';
@@ -32,9 +31,14 @@ const Results = React.createClass({
 
     return <div>
       <img className="results" src="./images/results.jpg"></img>
-      <IconButton tooltip="More restaurants!" onTouchTap={this.handleTouchTap}>
+
+      <IconButton
+        tooltip="More restaurants!"
+        onTouchTap={this.handleTouchTap}
+      >
         <AvReplay />
       </IconButton>
+
       <Table
         fixedHeader={true}
         fixedFooter={true}
@@ -74,9 +78,8 @@ const Results = React.createClass({
               key={index}
               onTouchTap={() => this.handleRowTouch(restaurant)}
             >
-            <TableRowColumn style={{ width: 50 }}>{restaurant.rating}</TableRowColumn>
-            <TableRowColumn>{restaurant.name}</TableRowColumn>
-            <TableRowColumn style={{ width: 60}}>{categories}</TableRowColumn>
+            <TableRowColumn style={{ width: 100 }}><img className="burgerList" src="./images/cheeseburger2.png"></img></TableRowColumn>
+            <TableRowColumn>{restaurant.name}, {categories}</TableRowColumn>
           </TableRow>
         })}
 

@@ -3,7 +3,7 @@ import AssignmentReturned
 import axios from 'axios';
 import React from 'react';
 import Dissatisfied from 'material-ui/svg-icons/social/sentiment-dissatisfied';
-import Satisfied from 'material-ui/svg-icons/social/sentiment-satisfied'
+import Satisfied from 'material-ui/svg-icons/social/sentiment-satisfied';
 import TextField from 'material-ui/TextField';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
