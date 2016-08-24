@@ -77,13 +77,13 @@ const Search = React.createClass({
 
     return <div>
 
-      <Paper style={styleForm} className="tomato" >
+      <Paper style={styleForm} className="tomato paperSearch" >
         <img className="search" src="./images/search.jpg" />
       </Paper>
 
-      <Paper className="lettuce">
+
         <Paper
-          className="paper"
+          className="paperSearch lettuce"
           zDepth={3}
           style={{ backgroundColor: green600 }}
         >
@@ -99,11 +99,9 @@ const Search = React.createClass({
             value={this.state.search.location}
           />
         </Paper>
-      </Paper>
 
-      <Paper className="cheese">
         <Paper
-          className="paper"
+          className="paperSearch cheese"
           zDepth={3}
           style={{ backgroundColor: yellow600 }}
         >
@@ -119,10 +117,9 @@ const Search = React.createClass({
             value={this.state.search.keyword}
           />
         </Paper>
-      </Paper>
 
-      <div className="burger">
-        <Paper circle={true} zDepth={3} style={styleCircle} className="searchBtn">
+      <div>
+        <Paper circle={true} zDepth={3} style={styleCircle} className="searchBtn burger">
           <IconButton
             tooltip="Lets Go!"
             touch={true}

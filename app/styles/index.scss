@@ -34,6 +34,13 @@ body {
   margin-bottom: 10px;
 }
 
+.paperSearch {
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-top: 25px;
+  margin-bottom: 15px;
+}
+
 .searchBtn {
   margin-top: 10px !important;
   margin-left: 100px !important;
@@ -59,15 +66,16 @@ body {
 .cheese {
   background-image: url('./images/cheese.jpg');
   background-size: cover;
-  padding-top: 15px;
-  padding-bottom: 15px;
+  margin-top: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
 .lettuce {
   background-image: url('./images/lettuce.jpg');
   background-size: cover;
-  padding-top: 15px;
-  padding-bottom: 15px;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
 .tomato {
