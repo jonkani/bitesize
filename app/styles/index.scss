@@ -37,16 +37,11 @@ body {
 .paperSearch {
   margin-left: 20px;
   margin-right: 20px;
-  margin-top: 15px;
+  margin-top: 10px;
   margin-bottom: 20px;
 }
 
-.searchBtn {
-  margin-top: 10px !important;
-  margin-left: 100px !important;
-}
-
-.search {
+.searchTitle {
   margin-top: 20px;
   margin-bottom: 20px;
   width: 75%;
@@ -171,4 +166,20 @@ body {
   width: 70%;
   margin-top: 20px;
   margin-left: 40px;
+}
+
+.welcome {
+  padding: 10px;
+  width: 300px;
+  margin-left: 30px;
+  margin-top: 10px;
+}
+
+.burgerBtn {
+  margin-left: 75px;
+}
+
+.searchBtn {
+  margin-top: 50px;
+  width: 160px;
 }

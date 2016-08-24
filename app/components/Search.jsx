@@ -5,9 +5,6 @@ import { fullWhite, red700, green600, yellow600, brown700 }
 import TextField from 'material-ui/TextField';
 import IconButton from 'material-ui/IconButton';
 import LocalDining from 'material-ui/svg-icons/maps/restaurant';
-import Place from 'material-ui/svg-icons/maps/place';
-import Keyword from 'material-ui/svg-icons/action/search';
-
 
 const Search = React.createClass({
   getInitialState(){
@@ -56,6 +53,11 @@ const Search = React.createClass({
       floatingLabelFocusStyle: {
         color: '#FFFFFF',
       },
+      inputStyle: {
+        color: fullWhite,
+        fontSize: '30px',
+        textShadow: '3px 3px 4px grey',
+      },
     };
 
     const styleCircle = {
@@ -67,19 +69,10 @@ const Search = React.createClass({
       backgroundColor: brown700
     };
 
-    const styleTitle = {
-      color: fullWhite
-    };
-
-    const styleForm = {
-
-    };
-
     return <div>
 
-      <Paper zDepth={3} style={styleForm} className="tomato paperSearch" >
-        <img className="search" src="./images/search.jpg" />
-      </Paper>
+
+        <img className="welcome" src="./images/welcome.jpg" />
 
 
         <Paper
@@ -87,14 +80,15 @@ const Search = React.createClass({
           zDepth={3}
           style={{ backgroundColor: green600 }}
         >
-          <Place />
           <TextField
-            hintText="City, zip, or landmark!"
+            hintText="City or Zip"
             floatingLabelText="Location"
             floatingLabelStyle={styleLocation.floatingLabelStyle}
             floatingLabelFocusStyle={styleLocation.floatingLabelFocusStyle}
             onChange={this.handleChange}
+            inputStyle={styleLocation.inputStyle}
             name="location"
+            style={{marginLeft: '40px'}}
             underlineStyle={styleLocation.underlineStyle}
             value={this.state.search.location}
           />
@@ -105,7 +99,6 @@ const Search = React.createClass({
           zDepth={3}
           style={{ backgroundColor: yellow600 }}
         >
-          <Keyword />
           <TextField
             hintText="Sushi, lunch, Mexican, etc."
             floatingLabelText="Keyword (optional)"
@@ -113,13 +106,15 @@ const Search = React.createClass({
             floatingLabelFocusStyle={styleLocation.floatingLabelFocusStyle}
             onChange={this.handleChange}
             name="keyword"
+            style={{marginLeft: '40px'}}
+            inputStyle={styleLocation.inputStyle}
             underlineStyle={styleLocation.underlineStyle}
             value={this.state.search.keyword}
           />
         </Paper>
 
-      <div>
-        <Paper circle={true} zDepth={3} style={styleCircle} className="searchBtn burger">
+      <div className="burgerBtn">
+        <Paper circle={true} zDepth={3} style={styleCircle} className="burger">
           <IconButton
             tooltip="Lets Go!"
             touch={true}
@@ -128,7 +123,9 @@ const Search = React.createClass({
             onTouchTap={this.handleSubmit}
             style={styleIcon.large}
           >
-            <LocalDining color={fullWhite}/>
+            <div>
+              <img className="searchBtn" src="./images/search.jpg"></img>
+            </div>
           </IconButton>
         </Paper>
       </div>
