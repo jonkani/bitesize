@@ -116,13 +116,11 @@ router.get('/search', ev(validations.get), (req, res, next) => {
 
             restaurants = restaurants.filter((target) => {
               for (const category of target.categoryList) {
-                for (const dCat of disabledCats) {
-                  if (category === dCat) {
+                  if (disabledCats.includes(category)) {
 
                     return false;
                   }
                 }
-              }
               if (minRating > target.rating) {
 
                 return false;

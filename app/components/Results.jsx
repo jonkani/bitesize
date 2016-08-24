@@ -50,7 +50,7 @@ const Results = React.createClass({
         <TableBody displayRowCheckbox={false}>
 
         {restaurantsView.map((restaurant, index) => {
-          const categories = restaurant.categoryList.reduce((addition, current) => current += `, ${addition}`);
+          const categories = restaurant.categoryList.join(', ');
           let bgColor;
 
           switch (index) {
