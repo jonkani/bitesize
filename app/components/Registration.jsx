@@ -13,6 +13,7 @@ import Paper from 'material-ui/Paper';
 import { red700, green700, yellow600, brown700 }
   from 'material-ui/styles/colors';
 import { withRouter } from 'react-router';
+import { browserHistory } from 'react-router';
 
 const Registration = React.createClass({
   getInitialState() {
@@ -53,6 +54,7 @@ const Registration = React.createClass({
     axios.post('/api/users', user)
     .then(() => {
       console.log('Success!');
+      browserHistory.push('/search');
     })
     .catch((err) => {
       console.error(err);
@@ -60,7 +62,6 @@ const Registration = React.createClass({
   },
 
   render() {
-
     const rating = [
       <MenuItem key={1} value={1} primaryText="1.0" />,
       <MenuItem key={2} value={2} primaryText="2.0" />,
@@ -192,6 +193,7 @@ const Registration = React.createClass({
           icon={<Dissatisfied />}
           label="Cancel"
           style={styleRaisedButton}
+          onTouchTap={() => {browserHistory.push('/search')}}
         />
       </div>
     </div>;
