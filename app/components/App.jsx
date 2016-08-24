@@ -9,6 +9,8 @@ import { browserHistory, withRouter } from 'react-router';
 import LocalDining from 'material-ui/svg-icons/maps/restaurant';
 import Help from 'material-ui/svg-icons/action/help';
 import Person from 'material-ui/svg-icons/action/account-circle';
+import Settings from 'material-ui/svg-icons/action/settings';
+import PowerSettings from 'material-ui/svg-icons/action/power-settings-new';
 import PersonAdd from 'material-ui/svg-icons/content/add-circle';
 import ResultModal from 'components/ResultModal';
 
@@ -74,6 +76,16 @@ const App = React.createClass({
     this.setState({ position: newPostion });
   },
 
+  logOut() {
+    axios.delete('api/token')
+    .then(() => {
+      browserHistory.push('/');
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+  },
+
   render() {
     const styleFlatButton = {
       height: '64px',
@@ -98,6 +110,50 @@ const App = React.createClass({
       marginLeft: '25px'
     };
 
+    const navArray = [
+      <BottomNavigationItem
+      label="Login"
+      icon={<Person style={styleBottonIcon}/>}
+      onTouchTap={() => {browserHistory.push('/login')}}
+      key="login"
+      />,
+      <BottomNavigationItem
+        label="New User"
+        icon={<PersonAdd style={styleBottonIcon}/>}
+        onTouchTap={() => {browserHistory.push('/registration')}}
+        key="new"
+      />,
+      <BottomNavigationItem
+        label="About"
+        icon={<Help style={styleBottonIcon}/>}
+        onTouchTap={() => {browserHistory.push('/about')}}
+        key="about"
+      />,
+      <BottomNavigationItem
+        label="Hungry!"
+        icon={<LocalDining style={styleBottonIcon}/>}
+        onTouchTap={() => {browserHistory.push('/search')}}
+        key="search"
+      />
+    ];
+
+    if (document.cookie) {
+      navArray.splice(0, 2,
+      <BottomNavigationItem
+        label="Log Out"
+        icon={<PowerSettings style={styleBottonIcon}/>}
+        onTouchTap={this.logOut}
+        key="logout"
+      />,
+      <BottomNavigationItem
+        label="Preferences"
+        icon={<Settings style={styleBottonIcon}/>}
+        onTouchTap={() => {browserHistory.push('/preferences')}}
+        key="pref"
+      />
+    );
+    }
+
     return <div>
       <AppBar
         className="appBarBun"
@@ -114,26 +170,7 @@ const App = React.createClass({
 
       <Paper zDepth={2}>
         <BottomNavigation style={styleBottomNav} className="bottomNav">
-          <BottomNavigationItem
-            label="New User"
-            icon={<PersonAdd style={styleBottonIcon}/>}
-            onTouchTap={() => {browserHistory.push('/registration')}}
-          />
-          <BottomNavigationItem
-            label="Login"
-            icon={<Person style={styleBottonIcon}/>}
-            onTouchTap={() => {browserHistory.push('/login')}}
-          />
-          <BottomNavigationItem
-            label="About"
-            icon={<Help style={styleBottonIcon}/>}
-            onTouchTap={() => {browserHistory.push('/about')}}
-          />
-          <BottomNavigationItem
-            label="Hungry!"
-            icon={<LocalDining style={styleBottonIcon}/>}
-            onTouchTap={() => {browserHistory.push('/search')}}
-          />
+          {navArray}
         </BottomNavigation>
       </Paper>
 

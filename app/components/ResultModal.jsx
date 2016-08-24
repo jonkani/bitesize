@@ -50,7 +50,7 @@ const ResultModal = React.createClass({
               </a>
             </h3>
             {restaurant.location ? restaurant.location.map((element, index) => {
-              return <h5 className="resultForm" key={index}>
+              return <h5 className="resultForm" key={index + 'i'}>
                 {restaurant.location[index]}
               </h5>
             }) : <h5></h5>}
