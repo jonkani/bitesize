@@ -165,7 +165,11 @@ const App = React.createClass({
       />,
       <BottomNavigationItem
         label="Preferences"
-        icon={<Settings style={styleBottonIcon}/>}
+        icon={
+          <Settings
+            style={styleBottonIcon}
+            color={pathLoc === '/preferences' ? 'red' : ''}
+          />}
         onTouchTap={() => {browserHistory.push('/preferences')}}
         key="pref"
       />
