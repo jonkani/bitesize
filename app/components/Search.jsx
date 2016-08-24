@@ -89,7 +89,7 @@ const Search = React.createClass({
         >
           <Place />
           <TextField
-            hintText="City or Zip"
+            hintText="City, zip, or landmark!"
             floatingLabelText="Location"
             floatingLabelStyle={styleLocation.floatingLabelStyle}
             floatingLabelFocusStyle={styleLocation.floatingLabelFocusStyle}
@@ -109,7 +109,7 @@ const Search = React.createClass({
         >
           <Keyword />
           <TextField
-            hintText="sushi, lunch, Mexican"
+            hintText="Sushi, lunch, Mexican, etc."
             floatingLabelText="Keyword"
             floatingLabelStyle={styleLocation.floatingLabelStyle}
             floatingLabelFocusStyle={styleLocation.floatingLabelFocusStyle}

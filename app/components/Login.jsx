@@ -82,7 +82,6 @@ const Login = React.createClass({
         <Paper className="mustard loginForm" circle={true}></Paper>
         <TextField
           className="loginTextField"
-          hintText="Hint Text"
           floatingLabelText="Email"
           name="email"
           onChange={this.handleTextChange}
@@ -96,7 +95,6 @@ const Login = React.createClass({
         <Paper className="ketchup loginForm" circle={true}></Paper>
         <TextField
           className="loginTextField"
-          hintText="Password Field"
           floatingLabelText="Password"
           name="password"
           onChange={this.handleTextChange}
