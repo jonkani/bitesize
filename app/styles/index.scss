@@ -1,6 +1,20 @@
+@import 'https://fonts.googleapis.com/css?family=Baloo+Paaji|Open+Sans:600';
+
 body {
   margin: 0;
   // background-color: #f6f6e0;
+}
+
+.aboutheader {
+  font-family: 'Baloo Paaji', cursive;
+  font-size: 3rem;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  text-align: center;
+}
+
+.aboutblock {
+  font-family: 'Open Sans', sans-serif;
 }
 
 .appBarBun {

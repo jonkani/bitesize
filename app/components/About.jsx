@@ -30,20 +30,20 @@ const About = React.createClass({
       textAlign: 'center',
       display: 'inline-block',
     };
+    const stylePaper = {
+      marginLeft: '3%',
+      marginRight: '3%',
+      padding: '1%'
+    };
 
     return <div>
-      <AppBar
-        onTitleTouchTap={this.handleTitleTouchTap}
-        title="Meal Wheel"
-        titleStyle={styleTitle}
-      >
-        <FlatButton
-          style={styleFlatButton}
-          onTouchTap={this.handleTouchTap}
-          label="New Post"
-        />
-      </AppBar>
-
+    <h2 className="aboutheader">Hungry?</h2>
+    <h2 className="aboutheader">Indecisive?</h2>
+    <Paper style={stylePaper}>
+      <p className="aboutblock">We've all been there. Whether you're somewhere new and unfamiliar or just can't put your finger on which local eatery you're craving, Meal Wheel is here to help.</p>
+      <p className="aboutblock">Put in a location, a search term (if you feel like it), and we'll give you a list just short enough to avoid the analysis paralysis that comes with a having huge pile of options to sort through.</p>
+      <p className="aboutblock">Here's to good food and short hunts!</p>
+    </Paper>
     </div>;
   }
 });
