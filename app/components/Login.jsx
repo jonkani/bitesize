@@ -1,18 +1,14 @@
-import AppBar from 'material-ui/AppBar';
 import axios from 'axios';
-import FlatButton from 'material-ui/FlatButton';
-import FloatingActionButton from 'material-ui/FloatingActionButton';
 import React from 'react';
-import Paper from 'material-ui/Paper';
+import { withRouter, browserHistory } from 'react-router';
+import Dissatisfied
+  from 'material-ui/svg-icons/social/sentiment-dissatisfied';
+import Satisfied from 'material-ui/svg-icons/social/sentiment-satisfied'
 import TextField from 'material-ui/TextField';
-import {BottomNavigation, BottomNavigationItem}
-  from 'material-ui/BottomNavigation';
+import RaisedButton from 'material-ui/RaisedButton';
 import { red700, green700, yellow600, brown700 }
   from 'material-ui/styles/colors';
-import { browserHistory } from 'react-router';
-import RaisedButton from 'material-ui/RaisedButton';
-import Dissatisfied from 'material-ui/svg-icons/social/sentiment-dissatisfied';
-import Satisfied from 'material-ui/svg-icons/social/sentiment-satisfied'
+import Paper from 'material-ui/Paper';
 
 const Login = React.createClass({
   getInitialState() {
@@ -45,35 +41,12 @@ const Login = React.createClass({
   },
 
   render() {
-    const styleFlatButton = {
-      height: '64px',
-      lineHeight: '64px'
-    };
-
-    const styleTitle = {
-      cursor: 'pointer'
-    };
-
-    const styleBottomNav = {
-      backgroundColor: '#f2df8f',
-      position: 'fixed',
-      bottom: 0
-    };
-
-    const style = {
-      height: 100,
-      width: '100%',
-      marginTop: 20,
-      textAlign: 'center',
-      display: 'inline-block',
-    };
-
     const styleRaisedButton = {
       marginLeft: '20px',
       marginTop: '20px',
     };
 
-    const styleEmail = {
+    const stylePassword = {
       errorStyle: {
         color: red700,
       },
@@ -88,27 +61,33 @@ const Login = React.createClass({
       },
     };
 
-    const stylePassword = {
+    const styleEmail = {
       errorStyle: {
-        color: green700,
+        color: yellow600,
       },
       underlineStyle: {
-        borderColor: green700,
+        borderColor: yellow600,
       },
       floatingLabelStyle: {
-        color: green700,
+        color: yellow600,
       },
       floatingLabelFocusStyle: {
-        color: green700,
+        color: yellow600,
       },
     };
 
-    return <div>
-      <div>
-        <Paper className="tomatoIcon regForm" circle={true}></Paper>
+    const styleRaisedButton = {
+      marginLeft: '20px',
+      marginTop: '20px',
+    };
 
+    return <div>
+      <img className="login" src="./images/login.jpg"></img>
+      <div>
+        <Paper className="mustard loginForm" circle={true}></Paper>
         <TextField
-          className="regFormInput"
+          className="loginTextField"
+          hintText="Hint Text"
           floatingLabelText="Email"
           name="email"
           onChange={this.handleTextChange}
@@ -119,10 +98,10 @@ const Login = React.createClass({
       </div>
 
       <div>
-        <Paper className="lettuceIcon regForm" circle={true}></Paper>
-
+        <Paper className="ketchup loginForm" circle={true}></Paper>
         <TextField
-          className="regFormInput"
+          className="loginTextField"
+          hintText="Password Field"
           floatingLabelText="Password"
           name="password"
           onChange={this.handleTextChange}
@@ -132,10 +111,12 @@ const Login = React.createClass({
           floatingLabelFocusStyle={stylePassword.floatingLabelFocusStyle}
         />
       </div>
+
+      <div className="loginBackground"></div>
       <div className="raisedBtn">
         <RaisedButton
           icon={<Satisfied />}
-          label="Login"
+          label="Save"
           style={styleRaisedButton}
           onTouchTap={this.handleLogin}
         />
@@ -151,4 +132,4 @@ const Login = React.createClass({
   }
 });
 
-export default Login;
+export default withRouter(Login);

@@ -113,7 +113,7 @@ const Registration = React.createClass({
     const user = this.state.user;
 
     return <div>
-      <img className="results" src="./images/registration.jpg"></img>
+      <img className="registration" src="./images/registration.jpg"></img>
 
       <div>
         <Paper className="tomatoIcon regForm" circle={true}></Paper>

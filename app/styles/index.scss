@@ -2,7 +2,6 @@
 
 body {
   margin: 0;
-  // background-color: #f6f6e0;
 }
 
 .aboutheader {
@@ -47,11 +46,9 @@ body {
   margin-left: 40px;
 }
 
-.results {
+.registration {
   margin-top: 20px;
-  margin-bottom: 10px;
-  width: 70%;
-  margin-left: 45px;
+  width: 97%;
 }
 
 .bottomNav {
@@ -127,4 +124,37 @@ body {
 
 .dialog {
   padding-bottom: 0px !important;
+}
+
+.login {
+  margin-top: 20px;
+  width: 45%;
+  margin-left: 80px;
+}
+
+.loginBackground {
+  background-image: url('./images/loginBackground.jpg');
+  background-size: 300px 275px;
+  background-repeat: no-repeat;
+  height: 250px;
+  padding-bottom: 10px;
+  margin-left: 40px;
+}
+
+.mustard {
+  background-image: url('./images/mustard.jpg');
+}
+
+.ketchup {
+  background-image: url('./images/ketchup.jpg');
+}
+
+.loginForm {
+  height: 40px;
+  width: 40px;
+  background-size: cover;
+  display: inline-block;
+  margin-left: 20px;
+  margin-top: 10px;
+  margin-right: 10px;
 }
