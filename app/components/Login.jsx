@@ -76,11 +76,6 @@ const Login = React.createClass({
       },
     };
 
-    const styleRaisedButton = {
-      marginLeft: '20px',
-      marginTop: '20px',
-    };
-
     return <div>
       <img className="login" src="./images/login.jpg"></img>
       <div>
