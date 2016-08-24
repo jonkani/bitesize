@@ -103,12 +103,13 @@ const App = React.createClass({
         className="appBarBun"
         style={styleAddBarr}
         titleStyle={styleTitle}
+        showMenuIconButton={false}
       >
-        <FlatButton
+        {/* <FlatButton
           style={styleFlatButton}
           onTouchTap={this.handleTouchTap}
           label="btn"
-        />
+        /> */}
       </AppBar>
 
       <Paper zDepth={2}>
@@ -116,18 +117,22 @@ const App = React.createClass({
           <BottomNavigationItem
             label="New User"
             icon={<PersonAdd style={styleBottonIcon}/>}
+            onTouchTap={() => {browserHistory.push('/registration')}}
           />
           <BottomNavigationItem
             label="Login"
             icon={<Person style={styleBottonIcon}/>}
+            onTouchTap={() => {browserHistory.push('/login')}}
           />
           <BottomNavigationItem
             label="About"
             icon={<Help style={styleBottonIcon}/>}
+            onTouchTap={() => {browserHistory.push('/about')}}
           />
           <BottomNavigationItem
             label="Hungry!"
             icon={<LocalDining style={styleBottonIcon}/>}
+            onTouchTap={() => {browserHistory.push('/search')}}
           />
         </BottomNavigation>
       </Paper>

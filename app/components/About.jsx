@@ -2,7 +2,8 @@ import AppBar from 'material-ui/AppBar';
 import FlatButton from 'material-ui/FlatButton';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import React from 'react';
-import {BottomNavigation, BottomNavigationItem}
+import Paper from 'material-ui/Paper';
+import { BottomNavigation, BottomNavigationItem }
   from 'material-ui/BottomNavigation';
 
 const About = React.createClass({

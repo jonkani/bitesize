@@ -2,6 +2,7 @@ import AppBar from 'material-ui/AppBar';
 import FlatButton from 'material-ui/FlatButton';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import React from 'react';
+import Paper from 'material-ui/Paper';
 import {BottomNavigation, BottomNavigationItem}
   from 'material-ui/BottomNavigation';
 
@@ -31,7 +32,7 @@ const Login = React.createClass({
     };
 
     return <div>
-      <AppBar
+      {/* <AppBar
         onTitleTouchTap={this.handleTitleTouchTap}
         title="Meal Wheel"
         titleStyle={styleTitle}
@@ -46,7 +47,7 @@ const Login = React.createClass({
 
       <Paper zDepth={3}>
         <BottomNavigation style={styleBottomNav} />
-      </Paper>
+      </Paper> */}
 
     </div>;
   }
