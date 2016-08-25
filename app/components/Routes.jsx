@@ -1,13 +1,12 @@
-import { browserHistory, IndexRoute, Route, Router } from 'react-router';
-import App from 'components/App';
-import Registration from 'components/Registration';
-// import Landing from 'components/Landing';
-import Login from 'components/Login';
+import { IndexRoute, Route, Router, browserHistory } from 'react-router';
 import About from 'components/About';
-import Search from 'components/Search';
-import Results from 'components/Results';
+import App from 'components/App';
+import Login from 'components/Login';
 import Preferences from 'components/Preferences';
 import React from 'react';
+import Registration from 'components/Registration';
+import Results from 'components/Results';
+import Search from 'components/Search';
 
 const Routes = React.createClass({
   render() {
