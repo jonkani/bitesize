@@ -51,11 +51,23 @@ const Results = React.createClass({
 
     return <div>
       <img className="menu" src="./images/menu.jpg"></img>
-      <Paper circle={true} style={{display: 'inline-block', marginLeft: '40px', width: '50px', height: '50px', backgroundColor: green700, position: 'fixed', bottom: '545px'}} onTouchTap={this.handleTouchTap}>
+      <Paper
+        circle={true}
+        zDepth={2}
+        style={{
+          display: 'inline-block',
+          marginLeft: '40px',
+          width: '50px',
+          height: '50px',
+          backgroundColor: green700,
+          position: 'fixed',
+          bottom: '545px'
+        }}
+        onTouchTap={this.handleTouchTap}
+      >
         <div style={{marginLeft: '5px'}}>
-
-        <Redo style={{display: 'block', color: fullWhite, marginLeft: '5px'}}/>
-        <p style={{display: 'block', marginTop: '0px', marginBottom: '0px', color: fullWhite}}>More</p>
+          <Redo style={{display: 'block', color: fullWhite, marginLeft: '5px'}}/>
+          <p style={{display: 'block', marginTop: '0px', marginBottom: '0px', color: fullWhite}}>More</p>
         </div>
       </Paper>
 
@@ -101,9 +113,34 @@ const Results = React.createClass({
               </IconButton>
             </Paper>
             <div className="flexItems">
-              <p style={{marginBottom: '5px', marginTop: '0px', fontSize: '17px', fontWeight: 'bold'}}>#{num} {restaurant.name}</p>
-              <p style={{marginBottom: '5px', marginTop: '0px', fontSize: '15px'}}>{restaurant.categoryList}</p>
-              <p style={{marginBottom: '0px', marginTop: '0px', fontStyle: 'italic', fontSize: '13px'}}>{restaurant.snippetText}</p>
+              <p
+                style={{
+                  marginBottom: '5px',
+                  marginTop: '0px',
+                  fontSize: '15px',
+                  fontWeight: 'bold',
+                }}>#{num} &nbsp;
+                  <span
+                    style={{
+                      textDecoration:'underline'
+                    }}>{restaurant.name}
+                  </span>
+              </p>
+              <p
+                style={{
+                  marginBottom: '5px',
+                  marginTop: '0px',
+                  fontSize: '12px'
+                }}>{restaurant.categoryList}
+              </p>
+              <p
+                style={{
+                  marginBottom: '0px',
+                  marginTop: '0px',
+                  fontStyle: 'italic',
+                  fontSize: '10px'
+                }}>{restaurant.snippetText}
+              </p>
             </div>
           </div>
           <Divider />
