@@ -9,10 +9,11 @@
     "url": ""
   },
   "scripts": {
-    "heroku-postbuild": "brunch build --production",
+    "heroku-postbuild": "brunch build --production; knex migrate:latest",
     "lint": "eslint --ext .js,.jsx --ignore-pattern public",
     "start": "brunch watch --server",
-    "knex": "knex"
+    "knex": "knex",
+    "nf": "nf start"
   },
   "dependencies": {
     "auto-reload-brunch": "^2.7.1",
@@ -47,9 +48,10 @@
   "devDependencies": {
     "eslint": "^3.2.2",
     "eslint-config-ryansobol": "^8.0.0",
+    "foreman": "^1.4.1",
     "nodemon": "^1.10.2"
   },
   "engines": {
-  "node": "6.4.0"
+    "node": "6.4.0"
   }
 }
