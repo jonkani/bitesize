@@ -1,19 +1,18 @@
-import AppBar from 'material-ui/AppBar';
-import axios from 'axios';
 import { BottomNavigation, BottomNavigationItem }
-  from 'material-ui/BottomNavigation';
-import FlatButton from 'material-ui/FlatButton';
-import Paper from 'material-ui/Paper';
-import React from 'react';
+from 'material-ui/BottomNavigation';
 import { browserHistory, withRouter } from 'react-router';
-import LocalDining from 'material-ui/svg-icons/maps/restaurant';
+import AppBar from 'material-ui/AppBar';
 import Help from 'material-ui/svg-icons/action/help';
+import LocalDining from 'material-ui/svg-icons/maps/restaurant';
+import Paper from 'material-ui/Paper';
 import Person from 'material-ui/svg-icons/action/account-circle';
-import Settings from 'material-ui/svg-icons/action/settings';
-import PowerSettings from 'material-ui/svg-icons/action/power-settings-new';
 import PersonAdd from 'material-ui/svg-icons/content/add-circle';
+import PowerSettings from 'material-ui/svg-icons/action/power-settings-new';
+import React from 'react';
 import ResultModal from 'components/ResultModal';
+import Settings from 'material-ui/svg-icons/action/settings';
 import Snackbar from 'material-ui/Snackbar';
+import axios from 'axios';
 
 const App = React.createClass({
   getInitialState() {
@@ -31,44 +30,59 @@ const App = React.createClass({
         open: false,
         message: ''
       }
-    }
+    };
   },
 
   setModal(restaurant) {
-    const newModal = Object.assign({}, this.state.modal, { open: true, restaurant: restaurant });
+    const newModal = Object.assign(
+      {},
+      this.state.modal,
+      { open: true, restaurant }
+    );
 
     this.setState({ modal: newModal });
   },
 
   closeModal() {
-    const newModal = Object.assign({}, this.state.modal, { open: false, restaurant: {} });
+    const newModal = Object.assign(
+      {},
+      this.state.modal,
+      { open: false, restaurant: {}}
+    );
 
     this.setState({ modal: newModal });
   },
 
   setToast(state, message) {
-    const newToast = Object.assign({}, this.state.toast, { open: state, message: message });
+    const newToast = Object.assign(
+      {},
+      this.state.toast,
+      { open: state, message });
 
-    this.setState({ toast : newToast })
+    this.setState({ toast: newToast });
   },
 
   searchRestaurants(location, term, displayNumber) {
     const search = { location, term, displayNumber };
 
-    axios.get('/api/search', {params: search})
+    axios.get('/api/search', { params: search })
     .then((res) => {
-      this.setState({ restaurants: res.data.restaurants })
+      this.setState({ restaurants: res.data.restaurants });
       browserHistory.push('/results');
     })
     .catch((err) => {
-      console.error(err);
-    })
+      this.setToast(
+        true,
+        `Whoops! ${err}.`
+      );
+    });
   },
 
   nextRestaurants() {
     let newStart = this.state.position.start;
     let newEnd = this.state.position.end;
     const resArr = this.state.restaurants;
+
     if (newEnd > resArr.length - 1) {
       newStart = 0;
       newEnd = 4;
@@ -82,28 +96,30 @@ const App = React.createClass({
       newEnd += 4;
     }
 
-    const newPostion = Object.assign({}, this.state.position, { start: newStart, end: newEnd });
+    const newPostion = Object.assign(
+      {},
+      this.state.position,
+      { start: newStart, end: newEnd }
+    );
 
     this.setState({ position: newPostion });
   },
 
-  logOut() {
+  handleLogOut() {
     axios.delete('api/token')
     .then(() => {
       browserHistory.push('/');
       this.setToast(true, 'Logged out!');
     })
     .catch((err) => {
-      console.error(err);
+      this.props.setToast(
+        true,
+        `Whoops! ${err}.`
+      );
     });
   },
 
   render() {
-    const styleFlatButton = {
-      height: '64px',
-      lineHeight: '64px'
-    };
-
     const styleTitle = {
       cursor: 'pointer'
     };
@@ -111,94 +127,89 @@ const App = React.createClass({
     const styleBottomNav = {
       backgroundColor: '#f2df8f',
       position: 'fixed',
-      bottom: 0,
+      bottom: 0
     };
 
     const styleAddBarr = {
-      backgroundColor: '#f2df8f',
+      backgroundColor: '#f2df8f'
     };
 
     const styleBottonIcon = {
       marginLeft: '25px'
-    };
-    const styleSelected = {
-      marginLeft: '25px',
-      color: '#f2df8f'
     };
 
     const pathLoc = (this.props.routes[1].path || '');
 
     const navArray = [
       <BottomNavigationItem
-      label="Login"
-      icon={<Person
-        style={styleBottonIcon}
-        color={pathLoc === '/login' ? 'red' : ''}
-      />}
-      onTouchTap={() => {browserHistory.push('/login')}}
-      key="login"
+        icon={<Person
+          color={pathLoc === '/login' ? 'red' : ''}
+          style={styleBottonIcon}
+        />}
+        key="login"
+        label="Login"
+        onTouchTap={() => browserHistory.push('/login')}
       />,
       <BottomNavigationItem
-        label="New User"
         icon={<PersonAdd
-          style={styleBottonIcon}
           color={pathLoc === '/registration' ? 'red' : ''}
+          style={styleBottonIcon}
         />}
-        onTouchTap={() => {browserHistory.push('/registration')}}
         key="new"
+        label="New User"
+        onTouchTap={() => browserHistory.push('/registration')}
       />,
       <BottomNavigationItem
-        label="About"
         icon={<Help
-          style={styleBottonIcon}
           color={pathLoc === '/about' ? 'red' : ''}
+          style={styleBottonIcon}
         />}
-        onTouchTap={() => {browserHistory.push('/about')}}
         key="about"
+        label="About"
+        onTouchTap={() => browserHistory.push('/about')}
       />,
       <BottomNavigationItem
-        label="Hungry!"
         icon={<LocalDining
-          style={styleBottonIcon}
           color={pathLoc === '' ? 'red' : ''}
+          style={styleBottonIcon}
         />}
-        onTouchTap={() => {browserHistory.push('/')}}
         key="search"
+        label="Hungry!"
+        onTouchTap={() => browserHistory.push('/')}
       />
     ];
 
     if (document.cookie) {
       navArray.splice(0, 2,
-      <BottomNavigationItem
-        label="Log Out"
-        icon={<PowerSettings style={styleBottonIcon}/>}
-        onTouchTap={this.logOut}
-        key="logout"
-      />,
-      <BottomNavigationItem
-        label="Preferences"
-        icon={
-          <Settings
-            style={styleBottonIcon}
-            color={pathLoc === '/preferences' ? 'red' : ''}
-          />}
-        onTouchTap={() => {browserHistory.push('/preferences')}}
-        key="pref"
-      />
+        <BottomNavigationItem
+          icon={<PowerSettings style={styleBottonIcon} />}
+          key="logout"
+          label="Log Out"
+          onTouchTap={this.handleLogOut}
+        />,
+        <BottomNavigationItem
+          icon={
+            <Settings
+              color={pathLoc === '/preferences' ? 'red' : ''}
+              style={styleBottonIcon}
+            />}
+          key="pref"
+          label="Preferences"
+          onTouchTap={() => browserHistory.push('/preferences')}
+        />
     );
     }
 
     return <div>
       <AppBar
         className="appBarBun"
+        showMenuIconButton={false}
         style={styleAddBarr}
         titleStyle={styleTitle}
-        showMenuIconButton={false}
-      >
-      </AppBar>
+      />
 
       <Paper zDepth={2}>
-        <BottomNavigation style={styleBottomNav} className="bottomNav">
+        <BottomNavigation className="bottomNav" style={styleBottomNav} >
           {navArray}
         </BottomNavigation>
       </Paper>
@@ -212,15 +223,15 @@ const App = React.createClass({
         position: this.state.position
       })}
       <ResultModal
-        modalData = {this.state.modal}
-        closeModal = {this.closeModal}
+        closeModal={this.closeModal}
+        modalData={this.state.modal}
       />
       <Snackbar
-        open = {this.state.toast.open}
-        message = {this.state.toast.message}
         autoHideDuration={2500}
-        onRequestClose={() => {this.setToast(false, '')}}
-        onTouchTap={() => {this.setToast(false, '')}}
+        message={this.state.toast.message}
+        onRequestClose={() => this.setToast(false, '')}
+        onTouchTap={() => this.setToast(false, '')}
+        open={this.state.toast.open}
       />
     </div>;
   }
