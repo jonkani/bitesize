@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 const ev = require('express-validation');
 const bcrypt = require('bcrypt-as-promised');
@@ -9,6 +9,7 @@ const knex = require('../knex');
 const { camelizeKeys } = require('humps');
 const jwt = require('jsonwebtoken');
 
+// eslint-disable-next-line new-cap
 const router = express.Router();
 
 router.post('/token', ev(validations.post), (req, res, next) => {
@@ -19,15 +20,19 @@ router.post('/token', ev(validations.post), (req, res, next) => {
     .first()
     .then((row) => {
       if (!row) {
-        throw boom.create(401, 'Invalid username or password')
+        throw boom.create(401, 'Invalid username or password');
       }
       user = camelizeKeys(row);
 
-      return bcrypt.compare(req.body.password, user.hashedPassword)
+      return bcrypt.compare(req.body.password, user.hashedPassword);
     })
     .then(() => {
       const expiry = new Date(Date.now() + 1000 * 60 * 60 * 24 * 30);
-      const token = jwt.sign({ userId: user.id }, process.env.SECRET_KEY, { expiresIn: '30 days'});
+      const token = jwt.sign(
+        { userId: user.id },
+        process.env.SECRET_KEY,
+        { expiresIn: '30 days' }
+      );
 
       res.cookie('accessToken', token, {
         httpOnly: true,
