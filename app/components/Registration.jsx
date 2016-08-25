@@ -187,6 +187,7 @@ const Registration = React.createClass({
         <Paper className="tomatoIcon regForm" circle={true}></Paper>
 
         <TextField
+          style={{marginTop: '0px'}}
           className="regFormInput"
           hintText="What's your email?"
           errorStyle={styleError}
@@ -206,6 +207,7 @@ const Registration = React.createClass({
         <Paper className="lettuceIcon regForm" circle={true}></Paper>
 
         <TextField
+          style={{marginTop: '0px'}}
           className="regFormInput"
           hintText="8 characters or more!"
           errorStyle={styleError}
@@ -222,7 +224,7 @@ const Registration = React.createClass({
         />
       </div>
 
-      <div>
+      <div style={{marginTop: '0px'}}>
         <Paper className="cheeseIcon regForm" circle={true}></Paper>
 
         <SelectField
@@ -240,7 +242,7 @@ const Registration = React.createClass({
         </SelectField>
       </div>
 
-      <div>
+      <div style={{marginTop: '0px'}}>
         <Paper className="burgerIcon regForm" circle={true}></Paper>
 
         <SelectField

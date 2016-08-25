@@ -140,7 +140,7 @@ const Search = React.createClass({
         </Paper>
 
         <Paper
-          className="paperSearch cheese"
+          className="cheeseSearch cheese"
           zDepth={3}
           style={{ backgroundColor: yellow600 }}
         >

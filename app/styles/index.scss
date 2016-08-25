@@ -37,8 +37,15 @@ body {
 .paperSearch {
   margin-left: 20px;
   margin-right: 20px;
-  margin-top: 10px;
-  margin-bottom: 20px;
+  margin-top: 5px;
+  margin-bottom: 15px;
+}
+
+.cheeseSearch {
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-top: 25px !important;
+  margin-bottom: 2px;
 }
 
 .searchTitle {
@@ -49,8 +56,9 @@ body {
 }
 
 .registration {
-  margin-top: 20px;
-  width: 97%;
+  margin-top: 10px;
+  width: 300px;
+  margin-left: 40px;
 }
 
 .bottomNav {
@@ -109,11 +117,12 @@ body {
   background-size: cover;
   display: inline-block;
   margin-left: 10px;
-  margin-top: 10px;
+  margin-top: 5px;
 }
 
 .regFormInput {
   margin-left: 10px;
+  margin-top: 0 !important;
 }
 
 .raisedBtn {
@@ -121,12 +130,23 @@ body {
 }
 
 .resultForm {
+  margin-top: 2px !important;
+  margin-bottom: 2px !important;
+  font-size: 15px;
+}
+
+.resultPhone {
   margin-top: 10px !important;
-  margin-bottom: 10px !important;
+  margin-bottom: 0px;
+}
+
+.resultLink {
+  font-size: 20px;
+  padding-bottom: 10px !important;
 }
 
 .dialog {
-  padding-bottom: 0px !important;
+  padding: 10px !important;
 }
 
 .login {
@@ -163,15 +183,14 @@ body {
 }
 
 .results {
-  width: 70%;
-  margin-top: 20px;
-  margin-left: 40px;
+  width: 60%;
+  margin-top: 10px;
+  margin-left: 70px;
 }
 
 .welcome {
   padding: 10px;
-  width: 300px;
-  margin-left: 30px;
+  width: 350px;
   margin-top: 10px;
 }
 
@@ -183,7 +202,6 @@ body {
   margin-top: 50px;
   width: 160px;
 }
-
 
 .container {
   display:flex;
@@ -207,6 +225,18 @@ body {
   margin-bottom: 0px;
 }
 
-.burgerList {
+.burgerResult {
   width: 120px;
+}
+
+.flexContainer {
+  display:flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-content: flex-start;
+  align-items: center;
+}
+
+.flexItems {
+  margin-left: 15px;
 }

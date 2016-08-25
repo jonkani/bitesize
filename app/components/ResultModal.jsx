@@ -3,6 +3,7 @@ import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import Paper from 'material-ui/Paper';
 import RaisedButton from 'material-ui/RaisedButton';
+import Dissatisfied from 'material-ui/svg-icons/social/sentiment-dissatisfied';
 import { red700, green700, yellow600, brown700 }
   from 'material-ui/styles/colors';
 
@@ -14,7 +15,6 @@ const ResultModal = React.createClass({
 
   render() {
     const restaurant = this.props.modalData.restaurant
-
     const styleDialog = {
       width: '100%',
       maxWidth: 'none',
@@ -22,12 +22,16 @@ const ResultModal = React.createClass({
 
     const actions =
       <div>
-        <p style={{display: 'inline-block', marginRight: '125px'}}>Rating: {restaurant.rating} | {restaurant.reviewCount} reviews</p>
         <FlatButton
           label="Close"
           onTouchTap={this.handleClose}
-          style={{backgroundColor: red700}}
+          style={{backgroundColor: red700, display: 'inline-block'}}
         />
+        <div style={{display: 'inline-block', }}>
+          <img style={{width: '75px', marginRight: '15px'}} src="./images/yelp.jpg"></img>
+          <p style={{marginLeft: '125px', marginTop: '0px'}}>Rating: {restaurant.rating} | {restaurant.reviewCount} reviews</p>
+
+        </div>
       </div>;
 
     return (
@@ -40,21 +44,19 @@ const ResultModal = React.createClass({
           onRequestClose={this.handleClose}
         >
         <div>
-          <Paper circle={true} style={{height: '100px', width: '100px', display: 'inline-block'}}>
-            <img src={restaurant.imageUrl} />
+          <Paper style={{display: 'inline-block', width: '130px', height: '130px'}}>
+            <img style={{width: '130px', height: '130px'}} src={restaurant.imageUrl} />
           </Paper>
           <div style={{display: 'inline-block', marginLeft: '15px'}}>
-            <h3 className="resultForm">
-              <a href={restaurant.url}>
-                {restaurant.name}
-              </a>
-            </h3>
+            <div className="resultLink">
+              <a href={restaurant.url}>{restaurant.name}</a>
+            </div>
             {restaurant.location ? restaurant.location.map((element, index) => {
               return <h5 className="resultForm" key={index + 'i'}>
                 {restaurant.location[index]}
               </h5>
             }) : <h5></h5>}
-            <h6 className="resultForm">{restaurant.displayPhone}</h6>
+            <h6 className="resultPhone">{restaurant.displayPhone}</h6>
           </div>
         </div>
           <p>{restaurant.snippetText}</p>
