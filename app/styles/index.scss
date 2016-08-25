@@ -206,17 +206,18 @@ body {
 
 .container {
   display:flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-content: flex-start;
-    align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: flex-start;
+  align-items: center;
   height: 275px;
+  margin-left: 5px;
 }
 
 .item {
   height: 20px;
-  width: 125px;
+  width: 115px;
   font-size: 11px;
   margin-bottom: 12px;
 }
@@ -240,4 +241,10 @@ body {
 
 .flexItems {
   margin-left: 15px;
+}
+
+.preferences {
+  width: 70%;
+  margin-left: 60px;
+  margin-top: 3px;
 }

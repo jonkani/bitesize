@@ -9,6 +9,7 @@ import React from 'react';
 import Satisfied from 'material-ui/svg-icons/social/sentiment-satisfied';
 import SelectField from 'material-ui/SelectField';
 import axios from 'axios';
+import Divider from 'material-ui/Divider';
 
 const Preferences = React.createClass({
   getInitialState() {
@@ -103,8 +104,15 @@ const Preferences = React.createClass({
       marginTop: '20px'
     };
 
+    const styleSelect = {
+      customWidth: {
+        width: 151,
+      },
+    };
+
     return <div>
-      <h4 className="prefSelect">Categories:</h4>
+      <img className="preferences" src="./images/preferences.jpg"></img>
+      <h4 style={{marginLeft: '10px', marginBottom: '5px'}} className="prefSelect">Categories:</h4>
       <div className="container">
         {this.state.preferences.categories.map((element) => {
           return <div className="item" key={element.id}>
@@ -116,24 +124,37 @@ const Preferences = React.createClass({
           </div>;
         })}
       </div>
-      <h4 className="prefSelect">Minimum Rating:</h4>
-      <SelectField
-        floatingLabelText="Minimum Yelp Rating"
-        name="minRating"
-        onChange={this.handleRatingChange}
-        value={this.state.preferences.minRating}
-      >
-        {rating}
-      </SelectField>
-      <h4 className="prefSelect">Search Radius:</h4>
-      <SelectField
-        floatingLabelText="Search Radius"
-        name="searchRadius"
-        onChange={this.handleRadiusChange}
-        value={this.state.preferences.searchRadius}
-      >
-        {items}
-      </SelectField>
+
+      <Divider style={{marginTop: '10px'}} />
+
+      <div style={{display: 'inline-block', marginTop: '5px'}}>
+        <div style={{display: 'inline-block', marginLeft: '10px'}}>
+          <h4 className="prefSelect">Minimum Rating:</h4>
+          <SelectField
+            style={styleSelect.customWidth}
+            floatingLabelText="Minimum Yelp Rating"
+            name="minRating"
+            onChange={this.handleRatingChange}
+            value={this.state.preferences.minRating}
+          >
+            {rating}
+          </SelectField>
+        </div>
+        <div style={{display: 'inline-block', marginLeft: '55px'}}>
+          <h4 className="prefSelect">Search Radius:</h4>
+          <SelectField
+            style={styleSelect.customWidth}
+            floatingLabelText="Search Radius"
+            name="searchRadius"
+            onChange={this.handleRadiusChange}
+            value={this.state.preferences.searchRadius}
+          >
+            {items}
+          </SelectField>
+        </div>
+      </div>
+
+      <Divider style={{marginTop: '10px'}} />
 
       <div className="raisedBtn">
         <RaisedButton
