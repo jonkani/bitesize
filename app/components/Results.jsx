@@ -56,19 +56,24 @@ const Results = React.createClass({
         {restaurantsView.map((restaurant, index) => {
           const categories = restaurant.categoryList.join(', ');
           let bgColor;
+          let burger;
 
           switch (index) {
             case 0:
               bgColor = red700;
+              burger = './images/cheeseburger2.png';
               break;
             case 1:
               bgColor = green600;
+              burger = './images/cheeseburger3.png';
               break;
             case 2:
               bgColor = yellow600;
+              burger = './images/cheeseburger4.png';
               break;
             case 3:
               bgColor = brown700;
+              burger = './images/cheeseburger5.png';
               break;
             default:
           }
@@ -78,7 +83,7 @@ const Results = React.createClass({
               key={index}
               onTouchTap={() => this.handleRowTouch(restaurant)}
             >
-            <TableRowColumn style={{ width: 100 }}><img className="burgerList" src="./images/cheeseburger2.png"></img></TableRowColumn>
+            <TableRowColumn style={{ width: 100 }}><img className="burgerList" src={burger}></img></TableRowColumn>
             <TableRowColumn>{restaurant.name}, {categories}</TableRowColumn>
           </TableRow>
         })}
