@@ -20,16 +20,26 @@ const ResultModal = React.createClass({
       maxWidth: 'none',
     };
 
+    const styleBody = {
+      padding: '20px',
+    };
+
     const actions =
       <div>
         <FlatButton
           label="Close"
           onTouchTap={this.handleClose}
-          style={{backgroundColor: red700, display: 'inline-block'}}
+          style={{backgroundColor: red700, display: 'inline-block', marginBottom: '5px'}}
         />
         <div style={{display: 'inline-block', }}>
-          <img style={{width: '75px', marginRight: '15px'}} src="./images/yelp.jpg"></img>
-          <p style={{marginLeft: '125px', marginTop: '0px'}}>Rating: {restaurant.rating} | {restaurant.reviewCount} reviews</p>
+          <a href={restaurant.url}><img style={{width: '75px'}} src="./images/yelp.jpg"></img></a>
+          <p
+            style={{
+              marginLeft: '80px',
+              marginTop: '0px',
+              marginBottom: '0px'
+            }}>Rating: {restaurant.rating} / Reviews: {restaurant.reviewCount}
+          </p>
 
         </div>
       </div>;
@@ -39,14 +49,23 @@ const ResultModal = React.createClass({
         <Dialog
           actions={actions}
           contentStyle={styleDialog}
+          bodyStyle={styleBody}
           modal={false}
           open={this.props.modalData.open}
           onRequestClose={this.handleClose}
         >
         <div>
-          <Paper style={{display: 'inline-block', width: '130px', height: '130px'}}>
-            <img style={{width: '130px', height: '130px'}} src={restaurant.imageUrl} />
+          <Paper
+            style={{
+              display: 'inline-block',
+              width: '130px',
+              height: '130px'
+            }}>
+              <img
+                style={{width: '130px', height: '130px'}} src={restaurant.imageUrl}
+              />
           </Paper>
+
           <div style={{display: 'inline-block', marginLeft: '15px'}}>
             <div className="resultLink">
               <a href={restaurant.url}>{restaurant.name}</a>

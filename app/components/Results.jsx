@@ -1,10 +1,13 @@
-
 import Divider from 'material-ui/Divider';
 import ActionHome from 'material-ui/svg-icons/action/home';
 import IconButton from 'material-ui/IconButton';
 import Paper from 'material-ui/Paper';
+import Redo from 'material-ui/svg-icons/content/redo';
+import Touch from 'material-ui/svg-icons/action/touch-app';
 import React from 'react';
 import { withRouter } from 'react-router';
+import { red700, green700, yellow600, brown700, fullWhite }
+  from 'material-ui/styles/colors';
 
 
 
@@ -47,7 +50,15 @@ const Results = React.createClass({
     };
 
     return <div>
-      <img className="results" src="./images/results.jpg"></img>
+      <img className="menu" src="./images/menu.jpg"></img>
+      <Paper circle={true} style={{display: 'inline-block', marginLeft: '40px', width: '50px', height: '50px', backgroundColor: green700, position: 'fixed', bottom: '545px'}} onTouchTap={this.handleTouchTap}>
+        <div style={{marginLeft: '5px'}}>
+
+        <Redo style={{display: 'block', color: fullWhite, marginLeft: '5px'}}/>
+        <p style={{display: 'block', marginTop: '0px', marginBottom: '0px', color: fullWhite}}>More</p>
+        </div>
+      </Paper>
+
       {restaurantsView.map((restaurant, index) => {
         const categories = restaurant.categoryList.join(', ');
         let burger;
@@ -90,7 +101,7 @@ const Results = React.createClass({
               </IconButton>
             </Paper>
             <div className="flexItems">
-              <p style={{marginBottom: '5px', marginTop: '0px', fontSize: '20px', fontWeight: 'bold'}}>#{num} {restaurant.name}</p>
+              <p style={{marginBottom: '5px', marginTop: '0px', fontSize: '17px', fontWeight: 'bold'}}>#{num} {restaurant.name}</p>
               <p style={{marginBottom: '5px', marginTop: '0px', fontSize: '15px'}}>{restaurant.categoryList}</p>
               <p style={{marginBottom: '0px', marginTop: '0px', fontStyle: 'italic', fontSize: '13px'}}>{restaurant.snippetText}</p>
             </div>
