@@ -1,14 +1,16 @@
 'use strict';
 
+/* eslint-disable camelcase */
 const knex = require('../knex');
 const express = require('express');
 const bcrypt = require('bcrypt-as-promised');
 const boom = require('boom');
-const humps = require('humps');
 const ev = require('express-validation');
 const validations = require('../validations/users');
 const { camelizeKeys, decamelizeKeys } = require('humps');
 const { checkAuth } = require('./middleware');
+
+// eslint-disable-next-line new-cap
 const router = express.Router();
 
 // create user
@@ -52,6 +54,7 @@ router.patch('/users', checkAuth, ev(validations.patch), (req, res, next) => {
           return false;
         }
       }
+
       return true;
     });
   };
@@ -67,10 +70,11 @@ router.patch('/users', checkAuth, ev(validations.patch), (req, res, next) => {
     .then(() => {
       return knex('users_categories')
         .select('category_id')
-        .where('user_id', id)
+        .where('user_id', id);
     })
     .then((result) => {
-      const parsed = result.map((element) => element['category_id']);
+      const parsed = result.map((element) => element.category_id);
+
       toSubtract = compare(parsed, disabled);
       toAdd = compare(disabled, parsed);
       const promisePile = [];
@@ -83,8 +87,8 @@ router.patch('/users', checkAuth, ev(validations.patch), (req, res, next) => {
               category_id: item
             })
             .del()
-        )
-      };
+        );
+      }
       for (const item of toAdd) {
         promisePile.push(
           knex('users_categories')
@@ -92,8 +96,8 @@ router.patch('/users', checkAuth, ev(validations.patch), (req, res, next) => {
               user_id: id,
               category_id: item
             })
-        )
-      };
+        );
+      }
 
       return Promise.all(promisePile);
     })
@@ -101,7 +105,7 @@ router.patch('/users', checkAuth, ev(validations.patch), (req, res, next) => {
       res.sendStatus(200);
     })
     .catch((err) => {
-      next(err)
+      next(err);
     });
 });
 
@@ -117,18 +121,17 @@ router.get('/users', checkAuth, (req, res, next) => {
 
       return knex('users_categories')
         .select('category_id')
-        .where('user_id', req.token.userId)
+        .where('user_id', req.token.userId);
     })
     .then((disabledData) => {
       disabled = disabledData.map((element) => element.category_id);
 
       return knex('users')
         .select('min_rating', 'search_radius')
-        .where('users.id', req.token.userId)
+        .where('users.id', req.token.userId);
     })
     .then((prefData) => {
       const preferences = camelizeKeys(prefData);
-      console.log(preferences);
       const response = {
         disabled,
         categories,
