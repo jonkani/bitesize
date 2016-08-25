@@ -5,6 +5,16 @@ import { fullWhite, red700, green600, yellow600, brown700 }
 import TextField from 'material-ui/TextField';
 import IconButton from 'material-ui/IconButton';
 import LocalDining from 'material-ui/svg-icons/maps/restaurant';
+import Joi from 'joi';
+
+const schema = Joi.object({
+  location: Joi.alternatives().try(
+    Joi.string().required(), Joi.number().required()
+  ),
+  keyword: Joi.string()
+    .allow('')
+    .max(255)
+});
 
 const Search = React.createClass({
   getInitialState(){
@@ -12,8 +22,27 @@ const Search = React.createClass({
       search: {
         location: '',
         keyword: ''
-      }
+      },
+      errors: {}
     }
+  },
+
+  handleBlur(event) {
+    const { name, value } = event.target;
+    const nextErrors = Object.assign({}, this.state.errors);
+    const result = Joi.validate({ [name]: value }, schema);
+
+    if (result.error) {
+      for (const detail of result.error.details) {
+        nextErrors[detail.path] = detail.message;
+      }
+
+      return this.setState({ errors: nextErrors });
+    }
+
+    delete nextErrors[name];
+
+    this.setState({ errors: nextErrors })
   },
 
   handleChange(event) {
@@ -25,6 +54,20 @@ const Search = React.createClass({
   },
 
   handleSubmit() {
+    const result = Joi.validate(this.state.search, schema, {
+      abortEarly: false,
+    });
+
+    if (result.error) {
+      const nextErrors = {};
+
+      for (const detail of result.error.details) {
+        nextErrors[detail.path] = detail.message;
+      }
+
+      return this.setState({ errors: nextErrors });
+    }
+
     this.props.searchRestaurants(this.state.search.location, this.state.search.keyword, 4);
   },
 
@@ -85,6 +128,8 @@ const Search = React.createClass({
             floatingLabelText="Location"
             floatingLabelStyle={styleLocation.floatingLabelStyle}
             floatingLabelFocusStyle={styleLocation.floatingLabelFocusStyle}
+            errorText={this.state.errors.location}
+            onBlur={this.handleBlur}
             onChange={this.handleChange}
             inputStyle={styleLocation.inputStyle}
             name="location"
@@ -103,9 +148,10 @@ const Search = React.createClass({
 
             hintText="Sushi, lunch, Mexican, etc."
             floatingLabelText="Keyword (optional)"
-
+            errorText={this.state.errors.keyword}
             floatingLabelStyle={styleLocation.floatingLabelStyle}
             floatingLabelFocusStyle={styleLocation.floatingLabelFocusStyle}
+            onBlur={this.handleBlur}
             onChange={this.handleChange}
             name="keyword"
             style={{marginLeft: '40px'}}
