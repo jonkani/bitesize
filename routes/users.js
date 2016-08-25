@@ -105,14 +105,38 @@ router.patch('/users', checkAuth, ev(validations.patch), (req, res, next) => {
     });
 });
 
-// get user preferences
+// get user preferences & category list
 router.get('/users', checkAuth, (req, res, next) => {
-  knex('users')
-    .leftJoin('users_categories', 'users.id', 'user_id')
-    .select('min_rating', 'search_radius', 'category_id')
-    .where('users.id', req.token.userId)
-    .then((response) => {
-      res.send(camelizeKeys(response));
+  let disabled;
+  let categories;
+
+  knex('categories')
+    .select('categories.id', 'name')
+    .then((catData) => {
+      categories = camelizeKeys(catData);
+
+      return knex('users_categories')
+        .select('category_id')
+        .where('user_id', req.token.userId)
+    })
+    .then((disabledData) => {
+      disabled = disabledData.map((element) => element.category_id);
+
+      return knex('users')
+        .select('min_rating', 'search_radius')
+        .where('users.id', req.token.userId)
+    })
+    .then((prefData) => {
+      const preferences = camelizeKeys(prefData);
+      console.log(preferences);
+      const response = {
+        disabled,
+        categories,
+        minRating: preferences[0].minRating,
+        searchRadius: preferences[0].searchRadius
+      };
+
+      res.send(response);
     })
     .catch((err) => {
       next(err);
