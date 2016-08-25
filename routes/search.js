@@ -1,19 +1,20 @@
-'use strict'
+'use strict';
 
+/* eslint-disable camelcase */
 const knex = require('../knex');
 const express = require('express');
-const boom = require('boom');
 const ev = require('express-validation');
-const validations = require('../validations/search')
-const { camelizeKeys, decamelizeKeys } = require('humps')
+const validations = require('../validations/search');
+const { camelizeKeys } = require('humps');
 const OAuth = require('oauth');
 const jwt = require('jsonwebtoken');
-const { checkAuth } = require('./middleware');
+
+// eslint-disable-next-line new-cap
 const router = express.Router();
 
 router.get('/search', ev(validations.get), (req, res, next) => {
-  const { location, term, displayNumber } =  req.query;
-  let query = `https://api.yelp.com/v2/search/?category_filter=restaurants&location=${location.trim()}&actionlinks=true&sort=2&limit=20`
+  const { location, term, displayNumber } = req.query;
+  let query = `https://api.yelp.com/v2/search/?category_filter=restaurants&location=${location.trim()}&actionlinks=true&sort=2&limit=20`;
   let id = null;
   let minRating;
   let searchRadius;
@@ -40,7 +41,7 @@ router.get('/search', ev(validations.get), (req, res, next) => {
         searchRadius = 3200;
       }
 
-      query += `&radius_filter=${searchRadius}`
+      query += `&radius_filter=${searchRadius}`;
     })
     .then(() => {
       const oauth = new OAuth.OAuth(
@@ -57,18 +58,19 @@ router.get('/search', ev(validations.get), (req, res, next) => {
           query,
           process.env.USER_TOKEN,
           process.env.USER_SECRET,
-          (error, data, response) => {
+          (error, data, _response) => {
             if (error) {
-              console.error(error, data);
               reject(error);
             }
             resolve(data);
           });
-        })
-        return yelp;
+      });
+
+      return yelp;
     })
     .then((data) => {
-      const parsedData = JSON.parse(data)
+      const parsedData = JSON.parse(data);
+
       restaurants = parsedData.businesses.map((element) => {
         const {
           rating,
@@ -103,44 +105,40 @@ router.get('/search', ev(validations.get), (req, res, next) => {
       if (!id) {
         return;
       }
-      else {
-        return knex('users_categories')
-          .join('categories', 'categories.id', 'category_id')
-          .select('name')
-          .where('user_id', id)
-          .then((disabled) => {
-            const disabledCats = disabled.map((cat) => {
 
-              return cat.name;
-            });
+      return knex('users_categories')
+      .join('categories', 'categories.id', 'category_id')
+      .select('name')
+      .where('user_id', id)
+      .then((disabled) => {
+        const disabledCats = disabled.map((cat) => {
+          return cat.name;
+        });
 
-            restaurants = restaurants.filter((target) => {
-              for (const category of target.categoryList) {
-                  if (disabledCats.includes(category)) {
+        restaurants = restaurants.filter((target) => {
+          for (const category of target.categoryList) {
+            if (disabledCats.includes(category)) {
+              return false;
+            }
+          }
+          if (minRating > target.rating) {
+            return false;
+          }
 
-                    return false;
-                  }
-                }
-              if (minRating > target.rating) {
+          return true;
+        });
 
-                return false;
-              }
-
-              return true;
-            })
-
-            return;
-          })
-      }
+        return;
+      });
     })
     .then(() => {
-      const final = { restaurants, displayNumber }
+      const final = { restaurants, displayNumber };
+
       res.send(final);
     })
     .catch((err) => {
       next(err);
     });
 });
-
 
 module.exports = router;
