@@ -1,5 +1,6 @@
 'use strict';
 
+/* eslint-disable camelcase */
 exports.seed = function(knex) {
   return knex('users_categories').del()
     .then(() => {
@@ -16,6 +17,8 @@ exports.seed = function(knex) {
     })
     .then(() => {
       return knex.raw(
+
+        // eslint-disable-next-line max-len
         "SELECT setval('users_categories_id_seq', (SELECT MAX(id) FROM users_categories));"
       );
     });

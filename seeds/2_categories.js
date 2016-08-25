@@ -102,7 +102,7 @@ exports.seed = function(knex) {
       {
         id: 25,
         name: 'Vietnamese'
-      },
+      }
     ]);
     })
     .then(() => {
