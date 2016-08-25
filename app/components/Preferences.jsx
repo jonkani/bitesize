@@ -1,3 +1,5 @@
+/* eslint-disable react/jsx-no-bind*/
+
 import { browserHistory, withRouter } from 'react-router';
 import Checkbox from 'material-ui/Checkbox';
 import Dissatisfied from 'material-ui/svg-icons/social/sentiment-dissatisfied';

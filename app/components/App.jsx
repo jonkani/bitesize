@@ -1,3 +1,5 @@
+/* eslint-disable react/jsx-no-bind*/
+
 import { BottomNavigation, BottomNavigationItem }
 from 'material-ui/BottomNavigation';
 import { browserHistory, withRouter } from 'react-router';
@@ -31,6 +33,14 @@ const App = React.createClass({
         message: ''
       }
     };
+  },
+
+  componentWillMount() {
+    if (window.localStorage.restaurants) {
+      const savedRestaurants = JSON.parse(window.localStorage.restaurants);
+
+      this.setState({ restaurants: savedRestaurants });
+    }
   },
 
   setModal(restaurant) {
@@ -68,6 +78,7 @@ const App = React.createClass({
     axios.get('/api/search', { params: search })
     .then((res) => {
       this.setState({ restaurants: res.data.restaurants });
+      window.localStorage.restaurants = JSON.stringify(res.data.restaurants);
       browserHistory.push('/results');
     })
     .catch((err) => {

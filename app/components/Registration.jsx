@@ -1,3 +1,5 @@
+/* eslint-disable react/jsx-no-bind*/
+
 import { brown700, green700, red700, yellow600 }
   from 'material-ui/styles/colors';
 import { browserHistory, withRouter } from 'react-router';
