@@ -1,20 +1,16 @@
-import AssignmentReturned
-  from 'material-ui/svg-icons/action/assignment-returned';
-import axios from 'axios';
-import React from 'react';
-import Dissatisfied from 'material-ui/svg-icons/social/sentiment-dissatisfied';
-import Satisfied from 'material-ui/svg-icons/social/sentiment-satisfied';
-import TextField from 'material-ui/TextField';
-import SelectField from 'material-ui/SelectField';
-import MenuItem from 'material-ui/MenuItem';
-import RaisedButton from 'material-ui/RaisedButton';
-import Cancel from 'material-ui/svg-icons/navigation/cancel';
-import Paper from 'material-ui/Paper';
-import { red700, green700, yellow600, brown700 }
+import { brown700, green700, red700, yellow600 }
   from 'material-ui/styles/colors';
-import { withRouter } from 'react-router';
-import { browserHistory } from 'react-router';
+import { browserHistory, withRouter } from 'react-router';
+import Dissatisfied from 'material-ui/svg-icons/social/sentiment-dissatisfied';
 import Joi from 'joi';
+import MenuItem from 'material-ui/MenuItem';
+import Paper from 'material-ui/Paper';
+import RaisedButton from 'material-ui/RaisedButton';
+import React from 'react';
+import Satisfied from 'material-ui/svg-icons/social/sentiment-satisfied';
+import SelectField from 'material-ui/SelectField';
+import TextField from 'material-ui/TextField';
+import axios from 'axios';
 
 const schema = Joi.object({
   email: Joi.string().trim().email(),
@@ -33,7 +29,7 @@ const Registration = React.createClass({
         searchRadius: ''
       },
       errors: {}
-    }
+    };
   },
 
   handleBlur(event) {
@@ -51,7 +47,7 @@ const Registration = React.createClass({
 
     delete nextErrors[name];
 
-    this.setState({ errors: nextErrors })
+    this.setState({ errors: nextErrors });
   },
 
   validateSelect(name, value) {
@@ -68,7 +64,7 @@ const Registration = React.createClass({
 
     delete nextErrors[name];
 
-    this.setState({ errors: nextErrors })
+    this.setState({ errors: nextErrors });
   },
 
   handleRatingChange(event, index, value) {
@@ -76,6 +72,7 @@ const Registration = React.createClass({
     const nextUser = Object.assign({}, this.state.user, {
       minRating: value
     });
+
     this.setState({ user: nextUser });
   },
 
@@ -84,6 +81,7 @@ const Registration = React.createClass({
     const nextUser = Object.assign({}, this.state.user, {
       searchRadius: value
     });
+
     this.setState({ user: nextUser });
   },
 
@@ -97,7 +95,7 @@ const Registration = React.createClass({
 
   handleRegister() {
     const result = Joi.validate(this.state.user, schema, {
-      abortEarly: false,
+      abortEarly: false
     });
 
     if (result.error) {
@@ -114,127 +112,129 @@ const Registration = React.createClass({
 
     axios.post('/api/users', user)
     .then(() => {
-      console.log('Success!');
       browserHistory.push('/login');
       this.props.setToast(true, 'Thanks for signing up! Go ahead and log in.');
     })
     .catch((err) => {
-      console.error(err);
-    })
+      this.props.setToast(
+        true,
+        `Whoops! ${err}.`
+      );
+    });
   },
 
   render() {
     const rating = [
-      <MenuItem key={1} value={1} primaryText="1.0" />,
-      <MenuItem key={2} value={2} primaryText="2.0" />,
-      <MenuItem key={3} value={3} primaryText="3.0" />,
-      <MenuItem key={4} value={4} primaryText="4.0" />,
+      <MenuItem key={1} primaryText="1.0" value={1} />,
+      <MenuItem key={2} primaryText="2.0" value={2} />,
+      <MenuItem key={3} primaryText="3.0" value={3} />,
+      <MenuItem key={4} primaryText="4.0" value={4} />
     ];
 
     const items = [
-      <MenuItem key={1} value={1} primaryText="1 mile" />,
-      <MenuItem key={2} value={2} primaryText="2 miles" />,
-      <MenuItem key={3} value={3} primaryText="3 miles" />,
+      <MenuItem key={1} primaryText="1 mile" value={1} />,
+      <MenuItem key={2} primaryText="2 miles" value={2} />,
+      <MenuItem key={3} primaryText="3 miles" value={3} />
     ];
 
     const styleRaisedButton = {
       marginLeft: '20px',
-      marginTop: '20px',
+      marginTop: '20px'
     };
 
     const styleEmail = {
       errorStyle: {
-        color: red700,
+        color: red700
       },
       underlineStyle: {
-        borderColor: red700,
+        borderColor: red700
       },
       floatingLabelStyle: {
-        color: red700,
+        color: red700
       },
       floatingLabelFocusStyle: {
-        color: red700,
-      },
+        color: red700
+      }
     };
 
     const stylePassword = {
       errorStyle: {
-        color: green700,
+        color: green700
       },
       underlineStyle: {
-        borderColor: green700,
+        borderColor: green700
       },
       floatingLabelStyle: {
-        color: green700,
+        color: green700
       },
       floatingLabelFocusStyle: {
-        color: green700,
-      },
+        color: green700
+      }
     };
 
     const styleError = {
       position: 'absolute',
-      top:'0.2rem',
+      top: '0.2rem',
       zIndex: -1
     };
 
     const user = this.state.user;
 
     return <div>
-      <img className="registration" src="./images/registration.jpg"></img>
+      <img className="registration" src="./images/registration.jpg" />
 
       <div>
-        <Paper className="tomatoIcon regForm" circle={true}></Paper>
+        <Paper circle={true} className="tomatoIcon regForm" />
 
         <TextField
-          style={{marginTop: '0px'}}
           className="regFormInput"
-          hintText="What's your email?"
           errorStyle={styleError}
           errorText={this.state.errors.email}
+          floatingLabelFocusStyle={styleEmail.floatingLabelFocusStyle}
+          floatingLabelStyle={styleEmail.floatingLabelStyle}
           floatingLabelText="Email"
+          hintText="What's your email?"
           name="email"
           onBlur={this.handleBlur}
           onChange={this.handleTextChange}
+          style={{ marginTop: '0px' }}
           underlineStyle={styleEmail.underlineStyle}
-          floatingLabelStyle={styleEmail.floatingLabelStyle}
-          floatingLabelFocusStyle={styleEmail.floatingLabelFocusStyle}
           value={user.email}
         />
       </div>
 
       <div>
-        <Paper className="lettuceIcon regForm" circle={true}></Paper>
+        <Paper circle={true} className="lettuceIcon regForm" />
 
         <TextField
-          style={{marginTop: '0px'}}
           className="regFormInput"
-          hintText="8 characters or more!"
           errorStyle={styleError}
           errorText={this.state.errors.password}
+          floatingLabelFocusStyle={stylePassword.floatingLabelFocusStyle}
+          floatingLabelStyle={stylePassword.floatingLabelStyle}
           floatingLabelText="Password"
+          hintText="8 characters or more!"
           name="password"
           onBlur={this.handleBlur}
           onChange={this.handleTextChange}
+          style={{ marginTop: '0px' }}
           type="password"
           underlineStyle={stylePassword.underlineStyle}
-          floatingLabelStyle={stylePassword.floatingLabelStyle}
-          floatingLabelFocusStyle={stylePassword.floatingLabelFocusStyle}
           value={user.password}
         />
       </div>
 
-      <div style={{marginTop: '0px'}}>
-        <Paper className="cheeseIcon regForm" circle={true}></Paper>
+      <div style={{ marginTop: '0px' }}>
+        <Paper circle={true} className="cheeseIcon regForm" />
 
         <SelectField
           className="regFormInput"
-          floatingLabelText="Minimum Yelp Rating"
-          floatingLabelStyle={{ color: yellow600 }}
           errorStyle={styleError}
           errorText={this.state.errors.minRating}
-          onChange={this.handleRatingChange}
+          floatingLabelStyle={{ color: yellow600 }}
+          floatingLabelText="Minimum Yelp Rating"
           name="minRating"
+          onChange={this.handleRatingChange}
           underlineStyle={{ borderColor: yellow600 }}
           value={user.minRating}
         >
@@ -242,18 +242,18 @@ const Registration = React.createClass({
         </SelectField>
       </div>
 
-      <div style={{marginTop: '0px'}}>
-        <Paper className="burgerIcon regForm" circle={true}></Paper>
+      <div style={{ marginTop: '0px' }}>
+        <Paper circle={true} className="burgerIcon regForm" />
 
         <SelectField
           className="regFormInput"
-          floatingLabelText="Search Radius"
-          floatingLabelStyle={{ color: brown700 }}
           errorStyle={styleError}
           errorText={this.state.errors.searchRadius}
-          onChange={this.handleRadiusChange}
+          floatingLabelStyle={{ color: brown700 }}
+          floatingLabelText="Search Radius"
           name="searchRadius"
-          style={{marginTop: 20}}
+          onChange={this.handleRadiusChange}
+          style={{ marginTop: 20 }}
           underlineStyle={{ borderColor: brown700 }}
           value={user.searchRadius}
         >
@@ -265,15 +265,15 @@ const Registration = React.createClass({
         <RaisedButton
           icon={<Satisfied />}
           label="Save"
-          style={styleRaisedButton}
           onTouchTap={this.handleRegister}
+          style={styleRaisedButton}
         />
 
         <RaisedButton
           icon={<Dissatisfied />}
           label="Cancel"
+          onTouchTap={() => browserHistory.push('/search')}
           style={styleRaisedButton}
-          onTouchTap={() => {browserHistory.push('/search')}}
         />
       </div>
     </div>;
