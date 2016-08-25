@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 const Joi = require('joi');
 
@@ -23,7 +23,7 @@ module.exports.post = {
       .label('Search Radius')
       .min(1)
       .max(3)
-      .required(),
+      .required()
   }
 };
 

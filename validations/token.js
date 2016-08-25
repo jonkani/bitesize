@@ -13,6 +13,6 @@ module.exports.post = {
       .alphanum()
       .label('Password')
       .trim()
-      .required(),
+      .required()
   }
 };

@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 const Joi = require('joi');
 
@@ -14,6 +14,6 @@ module.exports.get = {
     displayNumber: Joi.number()
       .required()
       .min(1)
-      .max(4),
+      .max(4)
   }
 };
