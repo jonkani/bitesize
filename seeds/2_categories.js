@@ -5,43 +5,43 @@ exports.seed = function(knex) {
     .then(() => {
       return knex('categories').insert([{
         id: 1,
-        name: 'African'
-      },
-      {
-        id: 2,
         name: 'Asian Fusion'
       },
       {
-        id: 3,
+        id: 2,
         name: 'Barbeque'
       },
       {
-        id: 4,
+        id: 3,
         name: 'Burgers'
       },
       {
-        id: 5,
+        id: 4,
         name: 'Cajun/Creole'
       },
       {
-        id: 6,
+        id: 5,
         name: 'Caribbean'
       },
       {
-        id: 7,
+        id: 6,
         name: 'Chinese'
       },
       {
-        id: 8,
+        id: 7,
         name: 'Delis'
       },
       {
-        id: 9,
+        id: 8,
         name: 'Diners'
       },
       {
-        id: 10,
+        id: 9,
         name: 'Fast Food'
+      },
+      {
+        id: 10,
+        name: 'Gastropub'
       },
       {
         id: 11,
@@ -77,30 +77,26 @@ exports.seed = function(knex) {
       },
       {
         id: 19,
-        name: 'Gastropub'
-      },
-      {
-        id: 20,
         name: 'Sandwiches'
       },
       {
-        id: 21,
+        id: 20,
         name: 'Seafood'
       },
       {
-        id: 22,
+        id: 21,
         name: 'Southern'
       },
       {
-        id: 23,
+        id: 22,
         name: 'Spanish'
       },
       {
-        id: 24,
+        id: 23,
         name: 'Thai'
       },
       {
-        id: 25,
+        id: 24,
         name: 'Vietnamese'
       }
     ]);
