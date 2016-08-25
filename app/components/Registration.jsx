@@ -27,8 +27,8 @@ const Registration = React.createClass({
       user: {
         email: '',
         password: '',
-        minRating: '',
-        searchRadius: ''
+        minRating: 1,
+        searchRadius: 1
       },
       errors: {}
     };
