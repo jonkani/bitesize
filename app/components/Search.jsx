@@ -7,12 +7,13 @@ import React from 'react';
 import TextField from 'material-ui/TextField';
 
 const schema = Joi.object({
-  location: Joi.alternatives().try(
-    Joi.string().required(), Joi.number().required()
-  ),
+  location: Joi.alternatives()
+  .try(Joi.string().required(), Joi.number().required())
+  .error(new Error('Please provide a valid location.#location')),
   keyword: Joi.string()
     .allow('')
     .max(255)
+    .error(new Error('Too many characters!#keyword'))
 });
 
 const Search = React.createClass({
@@ -32,9 +33,7 @@ const Search = React.createClass({
     const result = Joi.validate({ [name]: value }, schema);
 
     if (result.error) {
-      for (const detail of result.error.details) {
-        nextErrors[detail.path] = detail.message;
-      }
+      nextErrors[name] = result.error.message;
 
       return this.setState({ errors: nextErrors });
     }
@@ -58,11 +57,10 @@ const Search = React.createClass({
     });
 
     if (result.error) {
+      const parsedError = result.error.message.split('#');
       const nextErrors = {};
 
-      for (const detail of result.error.details) {
-        nextErrors[detail.path] = detail.message;
-      }
+      nextErrors[parsedError[1]] = result.error.message;
 
       return this.setState({ errors: nextErrors });
     }
@@ -94,7 +92,8 @@ const Search = React.createClass({
         borderColor: '#FFFFFF'
       },
       floatingLabelStyle: {
-        color: '#FFFFFF'
+        color: '#FFFFFF',
+        textShadow: '3px 3px 10px black'
       },
       floatingLabelFocusStyle: {
         color: '#FFFFFF'
@@ -115,6 +114,17 @@ const Search = React.createClass({
       backgroundColor: brown700
     };
 
+    const styleError = {
+      color: 'white',
+      position: 'absolute',
+      top: '0.2rem',
+      textShadow: '0px 0px 5px red',
+      fontSize: '1rem',
+      fontWeight: 800
+    };
+
+    const errors = this.state.errors;
+
     return <div>
       <img className="welcome" src="./images/welcome.jpg" />
 
@@ -124,10 +134,12 @@ const Search = React.createClass({
         zDepth={3}
       >
         <TextField
-          errorText={this.state.errors.location}
+          errorStyle={styleError}
+          errorText={errors.location ? errors.location.split('#')[0] : ''}
           floatingLabelFocusStyle={styleLocation.floatingLabelFocusStyle}
           floatingLabelStyle={styleLocation.floatingLabelStyle}
           floatingLabelText="Location"
+          hintStyle={{ color: 'white', textShadow: '3px 3px 10px black' }}
           hintText="City or Zip"
           inputStyle={styleLocation.inputStyle}
           name="location"
@@ -145,10 +157,12 @@ const Search = React.createClass({
         zDepth={3}
       >
         <TextField
-          errorText={this.state.errors.keyword}
+          errorStyle={styleError}
+          errorText={errors.keyword ? errors.keyword.split('#')[0] : ''}
           floatingLabelFocusStyle={styleLocation.floatingLabelFocusStyle}
           floatingLabelStyle={styleLocation.floatingLabelStyle}
           floatingLabelText="Keyword (optional)"
+          hintStyle={{ color: 'white', textShadow: '3px 3px 10px black' }}
           hintText="Sushi, lunch, Mexican, etc."
           inputStyle={styleLocation.inputStyle}
           name="keyword"
