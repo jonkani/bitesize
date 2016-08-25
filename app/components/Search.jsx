@@ -1,11 +1,10 @@
-import React from 'react';
-import Paper from 'material-ui/Paper';
-import { fullWhite, red700, green600, yellow600, brown700 }
+import { brown700, fullWhite, green600, yellow600 }
   from 'material-ui/styles/colors';
-import TextField from 'material-ui/TextField';
 import IconButton from 'material-ui/IconButton';
-import LocalDining from 'material-ui/svg-icons/maps/restaurant';
 import Joi from 'joi';
+import Paper from 'material-ui/Paper';
+import React from 'react';
+import TextField from 'material-ui/TextField';
 
 const schema = Joi.object({
   location: Joi.alternatives().try(
@@ -17,14 +16,14 @@ const schema = Joi.object({
 });
 
 const Search = React.createClass({
-  getInitialState(){
+  getInitialState() {
     return {
       search: {
         location: '',
         keyword: ''
       },
       errors: {}
-    }
+    };
   },
 
   handleBlur(event) {
@@ -42,7 +41,7 @@ const Search = React.createClass({
 
     delete nextErrors[name];
 
-    this.setState({ errors: nextErrors })
+    this.setState({ errors: nextErrors });
   },
 
   handleChange(event) {
@@ -55,7 +54,7 @@ const Search = React.createClass({
 
   handleSubmit() {
     const result = Joi.validate(this.state.search, schema, {
-      abortEarly: false,
+      abortEarly: false
     });
 
     if (result.error) {
@@ -68,39 +67,43 @@ const Search = React.createClass({
       return this.setState({ errors: nextErrors });
     }
 
-    this.props.searchRestaurants(this.state.search.location, this.state.search.keyword, 4);
+    this.props.searchRestaurants(
+      this.state.search.location,
+      this.state.search.keyword,
+      4
+    );
   },
 
   render() {
     const styleIcon = {
       largeIcon: {
         width: 150,
-        height: 150,
+        height: 150
       },
       large: {
         width: 180,
-        height: 180,
-      },
+        height: 180
+      }
     };
 
     const styleLocation = {
       errorStyle: {
-        color: '#FFFFFF',
+        color: '#FFFFFF'
       },
       underlineStyle: {
-        borderColor: '#FFFFFF',
+        borderColor: '#FFFFFF'
       },
       floatingLabelStyle: {
-        color: '#FFFFFF',
+        color: '#FFFFFF'
       },
       floatingLabelFocusStyle: {
-        color: '#FFFFFF',
+        color: '#FFFFFF'
       },
       inputStyle: {
         color: fullWhite,
         fontSize: '30px',
-        textShadow: '3px 3px 4px grey',
-      },
+        textShadow: '3px 3px 4px grey'
+      }
     };
 
     const styleCircle = {
@@ -113,66 +116,62 @@ const Search = React.createClass({
     };
 
     return <div>
+      <img className="welcome" src="./images/welcome.jpg" />
 
+      <Paper
+        className="paperSearch lettuce"
+        style={{ backgroundColor: green600 }}
+        zDepth={3}
+      >
+        <TextField
+          errorText={this.state.errors.location}
+          floatingLabelFocusStyle={styleLocation.floatingLabelFocusStyle}
+          floatingLabelStyle={styleLocation.floatingLabelStyle}
+          floatingLabelText="Location"
+          hintText="City or Zip"
+          inputStyle={styleLocation.inputStyle}
+          name="location"
+          onBlur={this.handleBlur}
+          onChange={this.handleChange}
+          style={{ marginLeft: '40px' }}
+          underlineStyle={styleLocation.underlineStyle}
+          value={this.state.search.location}
+        />
+      </Paper>
 
-        <img className="welcome" src="./images/welcome.jpg" />
-
-
-        <Paper
-          className="paperSearch lettuce"
-          zDepth={3}
-          style={{ backgroundColor: green600 }}
-        >
-          <TextField
-            hintText="City or Zip"
-            floatingLabelText="Location"
-            floatingLabelStyle={styleLocation.floatingLabelStyle}
-            floatingLabelFocusStyle={styleLocation.floatingLabelFocusStyle}
-            errorText={this.state.errors.location}
-            onBlur={this.handleBlur}
-            onChange={this.handleChange}
-            inputStyle={styleLocation.inputStyle}
-            name="location"
-            style={{marginLeft: '40px'}}
-            underlineStyle={styleLocation.underlineStyle}
-            value={this.state.search.location}
-          />
-        </Paper>
-
-        <Paper
-          className="cheeseSearch cheese"
-          zDepth={3}
-          style={{ backgroundColor: yellow600 }}
-        >
-          <TextField
-
-            hintText="Sushi, lunch, Mexican, etc."
-            floatingLabelText="Keyword (optional)"
-            errorText={this.state.errors.keyword}
-            floatingLabelStyle={styleLocation.floatingLabelStyle}
-            floatingLabelFocusStyle={styleLocation.floatingLabelFocusStyle}
-            onBlur={this.handleBlur}
-            onChange={this.handleChange}
-            name="keyword"
-            style={{marginLeft: '40px'}}
-            inputStyle={styleLocation.inputStyle}
-            underlineStyle={styleLocation.underlineStyle}
-            value={this.state.search.keyword}
-          />
-        </Paper>
+      <Paper
+        className="cheeseSearch cheese"
+        style={{ backgroundColor: yellow600 }}
+        zDepth={3}
+      >
+        <TextField
+          errorText={this.state.errors.keyword}
+          floatingLabelFocusStyle={styleLocation.floatingLabelFocusStyle}
+          floatingLabelStyle={styleLocation.floatingLabelStyle}
+          floatingLabelText="Keyword (optional)"
+          hintText="Sushi, lunch, Mexican, etc."
+          inputStyle={styleLocation.inputStyle}
+          name="keyword"
+          onBlur={this.handleBlur}
+          onChange={this.handleChange}
+          style={{ marginLeft: '40px' }}
+          underlineStyle={styleLocation.underlineStyle}
+          value={this.state.search.keyword}
+        />
+      </Paper>
 
       <div className="burgerBtn">
-        <Paper circle={true} zDepth={3} style={styleCircle} className="burger">
+        <Paper circle={true} className="burger" style={styleCircle}zDepth={3} >
           <IconButton
-            tooltip="Lets Go!"
-            touch={true}
-            tooltipPosition="bottom-right"
             iconStyle={styleIcon.largeIcon}
             onTouchTap={this.handleSubmit}
             style={styleIcon.large}
+            tooltip="Lets Go!"
+            tooltipPosition="bottom-right"
+            touch={true}
           >
             <div>
-              <img className="searchBtn" src="./images/search.jpg"></img>
+              <img className="searchBtn" src="./images/search.jpg" />
             </div>
           </IconButton>
         </Paper>
