@@ -41,7 +41,9 @@ const Results = React.createClass({
         {
           name: 'Nothing Found.',
           rating: <Dissatisfied />,
-          categoryList: ['Sorry!']
+          reviewCount: <Dissatisfied />,
+          categoryList: ['Sorry!'],
+          imageUrl: './images/emptyburger.jpg'
         }
       );
     }
