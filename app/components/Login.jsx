@@ -96,6 +96,9 @@ const Login = React.createClass({
 
     const stylePassword = {
       errorStyle: {
+        position: 'absolute',
+        top: '0.1rem',
+        zIndex: -1,
         color: red700
       },
       underlineStyle: {
@@ -111,6 +114,9 @@ const Login = React.createClass({
 
     const styleEmail = {
       errorStyle: {
+        position: 'absolute',
+        top: '0.1rem',
+        zIndex: -1,
         color: yellow600
       },
       underlineStyle: {
@@ -124,12 +130,6 @@ const Login = React.createClass({
       }
     };
 
-    const styleError = {
-      position: 'absolute',
-      top: '0.1rem',
-      zIndex: -1
-    };
-
     const errors = this.state.errors;
 
     return <div>
@@ -138,7 +138,7 @@ const Login = React.createClass({
         <Paper circle={true} className="mustard loginForm" />
         <TextField
           className="loginTextField"
-          errorStyle={styleError}
+          errorStyle={styleEmail.errorStyle}
           errorText={errors.email ? errors.email.split('#')[0] : ''}
           floatingLabelFocusStyle={styleEmail.floatingLabelFocusStyle}
           floatingLabelStyle={styleEmail.floatingLabelStyle}
@@ -147,6 +147,7 @@ const Login = React.createClass({
           onBlur={this.handleBlur}
           onChange={this.handleTextChange}
           underlineStyle={styleEmail.underlineStyle}
+          underlineFocusStyle={styleEmail.underlineStyle}
         />
       </div>
 
@@ -154,7 +155,7 @@ const Login = React.createClass({
         <Paper circle={true} className="ketchup loginForm" />
         <TextField
           className="loginTextField"
-          errorStyle={styleError}
+          errorStyle={stylePassword.errorStyle}
           errorText={errors.password ? errors.password.split('#')[0] : ''}
           floatingLabelFocusStyle={stylePassword.floatingLabelFocusStyle}
           floatingLabelStyle={stylePassword.floatingLabelStyle}
@@ -164,6 +165,7 @@ const Login = React.createClass({
           onChange={this.handleTextChange}
           type="password"
           underlineStyle={stylePassword.underlineStyle}
+          underlineFocusStyle={stylePassword.underlineStyle}
         />
       </div>
 

@@ -1,5 +1,6 @@
 /* eslint-disable react/jsx-no-bind*/
-
+import { brown700, green800, red700, yellow600 }
+  from 'material-ui/styles/colors';
 import { BottomNavigation, BottomNavigationItem }
 from 'material-ui/BottomNavigation';
 import { browserHistory, withRouter } from 'react-router';
@@ -131,18 +132,9 @@ const App = React.createClass({
   },
 
   render() {
-    const styleTitle = {
-      cursor: 'pointer'
-    };
-
     const styleBottomNav = {
-      backgroundColor: '#f2df8f',
       position: 'fixed',
       bottom: 0
-    };
-
-    const styleAddBarr = {
-      backgroundColor: '#f2df8f'
     };
 
     const styleBottonIcon = {
@@ -154,7 +146,7 @@ const App = React.createClass({
     const navArray = [
       <BottomNavigationItem
         icon={<Person
-          color={pathLoc === '/login' ? 'red' : ''}
+          color={pathLoc === '/login' ? green800 : ''}
           style={styleBottonIcon}
         />}
         key="login"
@@ -163,7 +155,7 @@ const App = React.createClass({
       />,
       <BottomNavigationItem
         icon={<PersonAdd
-          color={pathLoc === '/registration' ? 'red' : ''}
+          color={pathLoc === '/registration' ? green800 : ''}
           style={styleBottonIcon}
         />}
         key="new"
@@ -172,7 +164,7 @@ const App = React.createClass({
       />,
       <BottomNavigationItem
         icon={<Help
-          color={pathLoc === '/about' ? 'red' : ''}
+          color={pathLoc === '/about' ? green800 : ''}
           style={styleBottonIcon}
         />}
         key="about"
@@ -181,7 +173,7 @@ const App = React.createClass({
       />,
       <BottomNavigationItem
         icon={<LocalDining
-          color={pathLoc === '' ? 'red' : ''}
+          color={pathLoc === '' ? green800 : ''}
           style={styleBottonIcon}
         />}
         key="search"
@@ -201,23 +193,23 @@ const App = React.createClass({
         <BottomNavigationItem
           icon={
             <Settings
-              color={pathLoc === '/preferences' ? 'red' : ''}
+              color={pathLoc === '/preferences' ? green800 : ''}
               style={styleBottonIcon}
             />}
           key="pref"
           label="Preferences"
           onTouchTap={() => browserHistory.push('/preferences')}
         />
-    );
+      );
     }
 
     return <div>
       <AppBar
         className="appBarBun"
         showMenuIconButton={false}
-        style={styleAddBarr}
-        titleStyle={styleTitle}
-      />
+      >
+        <img className="logo" src="./images/logo.png"></img>
+      </AppBar>
 
       <Paper zDepth={2}>
         <BottomNavigation className="bottomNav" style={styleBottomNav} >

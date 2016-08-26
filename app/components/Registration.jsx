@@ -129,6 +129,9 @@ const Registration = React.createClass({
 
     const styleEmail = {
       errorStyle: {
+        position: 'absolute',
+        top: '0.2rem',
+        zIndex: -1,
         color: red700
       },
       underlineStyle: {
@@ -144,6 +147,9 @@ const Registration = React.createClass({
 
     const stylePassword = {
       errorStyle: {
+        position: 'absolute',
+        top: '0.2rem',
+        zIndex: -1,
         color: green700
       },
       underlineStyle: {
@@ -157,12 +163,6 @@ const Registration = React.createClass({
       }
     };
 
-    const styleError = {
-      position: 'absolute',
-      top: '0.2rem',
-      zIndex: -1
-    };
-
     const user = this.state.user;
     const errors = this.state.errors;
 
@@ -174,7 +174,7 @@ const Registration = React.createClass({
 
         <TextField
           className="regFormInput"
-          errorStyle={styleError}
+          errorStyle={styleEmail.errorStyle}
           errorText={errors.email ? errors.email.split('#')[0] : ''}
           floatingLabelFocusStyle={styleEmail.floatingLabelFocusStyle}
           floatingLabelStyle={styleEmail.floatingLabelStyle}
@@ -185,6 +185,7 @@ const Registration = React.createClass({
           onChange={this.handleTextChange}
           style={{ marginTop: '0px' }}
           underlineStyle={styleEmail.underlineStyle}
+          underlineFocusStyle={{borderColor: 'black'}}
           value={user.email}
         />
       </div>
@@ -194,7 +195,7 @@ const Registration = React.createClass({
 
         <TextField
           className="regFormInput"
-          errorStyle={styleError}
+          errorStyle={stylePassword.errorStyle}
           errorText={errors.password ? errors.password.split('#')[0] : ''}
           floatingLabelFocusStyle={stylePassword.floatingLabelFocusStyle}
           floatingLabelStyle={stylePassword.floatingLabelStyle}
@@ -206,6 +207,7 @@ const Registration = React.createClass({
           style={{ marginTop: '0px' }}
           type="password"
           underlineStyle={stylePassword.underlineStyle}
+          underlineFocusStyle={{borderColor: 'black'}}
           value={user.password}
         />
       </div>
@@ -220,6 +222,7 @@ const Registration = React.createClass({
           name="minRating"
           onChange={this.handleRatingChange}
           underlineStyle={{ borderColor: yellow600 }}
+          underlineFocusStyle={{borderColor: 'black'}}
           value={user.minRating}
         >
           {rating}
@@ -237,6 +240,7 @@ const Registration = React.createClass({
           onChange={this.handleRadiusChange}
           style={{ marginTop: 20 }}
           underlineStyle={{ borderColor: brown700 }}
+          underlineFocusStyle={{borderColor: 'black'}}
           value={user.searchRadius}
         >
           {items}

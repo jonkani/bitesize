@@ -11,9 +11,8 @@ const About = React.createClass({
     };
 
     return <div>
-      <h2 className="aboutheader">Hungry?</h2>
-      <h2 className="aboutheader">Indecisive?</h2>
-      <Paper style={stylePaper}>
+      <img className="about" src="./images/about.png"></img>
+      <Paper className="aboutPaper" style={stylePaper} zDepth={2}>
         <p className="aboutblock">We've all been there. Whether you're somewhere new and unfamiliar or just can't put your finger on which local eatery you're craving, biteSize is here to help.</p>
         <p className="aboutblock">Put in a location, a search term (if you feel like it), and we'll give you a list just short enough to avoid the analysis paralysis that comes with a having huge pile of options to sort through.</p>
         <p className="aboutblock">If you're feeling a little more picky, register for an account to fine-tune your search results by radius, rating, and category!</p>

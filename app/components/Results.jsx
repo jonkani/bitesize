@@ -1,7 +1,8 @@
 /* eslint-disable react/jsx-no-bind*/
 
 import { fullWhite, green700 }
-from 'material-ui/styles/colors';
+  from 'material-ui/styles/colors';
+import Dissatisfied from 'material-ui/svg-icons/social/sentiment-dissatisfied';
 import Divider from 'material-ui/Divider';
 import IconButton from 'material-ui/IconButton';
 import Paper from 'material-ui/Paper';
@@ -39,7 +40,7 @@ const Results = React.createClass({
       restaurantsView.push(
         {
           name: 'Nothing Found.',
-          rating: ':(',
+          rating: <Dissatisfied />,
           categoryList: ['Sorry!']
         }
       );
@@ -52,16 +53,14 @@ const Results = React.createClass({
         onTouchTap={this.handleTouchTap}
         style={{
           display: 'inline-block',
-          marginLeft: '40px',
+          marginLeft: '10px',
           width: '50px',
           height: '50px',
-          backgroundColor: green700,
-          position: 'fixed',
-          bottom: '545px'
+          backgroundColor: green700
         }}
         zDepth={2}
       >
-        <div style={{ marginLeft: '5px' }}>
+        <div style={{ marginLeft: '6px' }}>
           <Redo
             style={{
               display: 'block',
@@ -77,7 +76,7 @@ const Results = React.createClass({
               color: fullWhite
             }}
           >
-            More
+            more
           </p>
         </div>
       </Paper>
@@ -106,7 +105,7 @@ const Results = React.createClass({
           style={{ marginBottom: '10px', marginTop: '10px', width: '375px' }}
         >
           <div className="flexContainer">
-            <Paper circle={true} zDepth={2}>
+            <Paper style={{marginLeft: '7px', marginBottom: '7px'}} circle={true} zDepth={1}>
 
               <IconButton
                 iconStyle={styles.largeIcon}

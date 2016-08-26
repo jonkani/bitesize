@@ -115,10 +115,9 @@ const Search = React.createClass({
     };
 
     const styleError = {
-      color: 'white',
+      color: '#ffe004',
       position: 'absolute',
       top: '0.2rem',
-      textShadow: '0px 0px 5px red',
       fontSize: '1rem',
       fontWeight: 800
     };
@@ -126,7 +125,7 @@ const Search = React.createClass({
     const errors = this.state.errors;
 
     return <div>
-      <img className="welcome" src="./images/welcome.jpg" />
+      <img className="welcome" src="./images/welcome.png" />
 
       <Paper
         className="paperSearch lettuce"
@@ -147,6 +146,7 @@ const Search = React.createClass({
           onChange={this.handleChange}
           style={{ marginLeft: '40px' }}
           underlineStyle={styleLocation.underlineStyle}
+          underlineFocusStyle={styleLocation.underlineStyle}
           value={this.state.search.location}
         />
       </Paper>
@@ -170,6 +170,7 @@ const Search = React.createClass({
           onChange={this.handleChange}
           style={{ marginLeft: '40px' }}
           underlineStyle={styleLocation.underlineStyle}
+          underlineFocusStyle={styleLocation.underlineStyle}
           value={this.state.search.keyword}
         />
       </Paper>
@@ -185,7 +186,7 @@ const Search = React.createClass({
             touch={true}
           >
             <div>
-              <img className="searchBtn" src="./images/search.jpg" />
+              <img className="searchBtn" src="./images/search.png" />
             </div>
           </IconButton>
         </Paper>
