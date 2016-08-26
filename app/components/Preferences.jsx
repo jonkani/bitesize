@@ -121,7 +121,7 @@ const Preferences = React.createClass({
           color: green700,
           textDecoration: 'underline'
         }}
-      >Categories:
+      >Do Not Show Me:
       </h4>
       <div className="container">
         {this.state.preferences.categories.map((element) => {
@@ -144,9 +144,13 @@ const Preferences = React.createClass({
             className="prefSelect"
             style={{
               color: yellow600,
-              textDecoration: 'underline'
-            }}
-          >Minimum Rating:</h4>
+              textDecoration: 'underline',
+              textShadow: 'black 0px 0px 0px',
+              fontSize: '15px',
+              fontWeight: '800',
+              letterSpacing: '1px'
+            }}>Minimum Rating:
+          </h4>
           <SelectField
             floatingLabelText="Minimum Yelp Rating"
             name="minRating"
@@ -158,13 +162,14 @@ const Preferences = React.createClass({
           </SelectField>
         </div>
         <div style={{ display: 'inline-block', marginLeft: '55px' }}>
-          <h4
-            className="prefSelect"
+          <h4 className="prefSelect"
             style={{
               color: brown700,
-              textDecoration: 'underline'
-            }}
-          >Search Radius:</h4>
+              textDecoration: 'underline',
+              textShadow: 'black 0px 0px 0px',
+              fontSize: '15px'
+            }}>Search Radius:
+          </h4>
           <SelectField
             floatingLabelText="Search Radius"
             name="searchRadius"
