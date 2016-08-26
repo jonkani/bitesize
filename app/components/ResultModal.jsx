@@ -2,7 +2,7 @@ import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import Paper from 'material-ui/Paper';
 import React from 'react';
-import { red700 } from 'material-ui/styles/colors';
+import { red700, fullWhite } from 'material-ui/styles/colors';
 
 const ResultModal = React.createClass({
   handleClose() {
@@ -28,7 +28,8 @@ const ResultModal = React.createClass({
           style={{
             backgroundColor: red700,
             display: 'inline-block',
-            marginBottom: '5px'
+            marginBottom: '5px',
+            color: fullWhite
           }}
         />
         <div style={{ display: 'inline-block' }}>
@@ -85,7 +86,7 @@ const ResultModal = React.createClass({
               <h6 className="resultPhone">{restaurant.displayPhone}</h6>
             </div>
           </div>
-          <p>{restaurant.snippetText}</p>
+          <p style={{fontStyle: 'italic'}}>{restaurant.snippetText}</p>
         </Dialog>
       </div>
     );

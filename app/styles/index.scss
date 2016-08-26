@@ -2,7 +2,7 @@
 
 body {
   margin: 0;
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Open Sans', sans-serif !important;
 }
 
 .aboutheader {
@@ -148,6 +148,7 @@ body {
 .resultLink {
   font-size: 20px;
   padding-bottom: 10px !important;
+  font-family: 'Sriracha', cursive;
 }
 
 .dialog {
