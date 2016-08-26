@@ -184,8 +184,8 @@ const Registration = React.createClass({
           onBlur={this.handleBlur}
           onChange={this.handleTextChange}
           style={{ marginTop: '0px' }}
+          underlineFocusStyle={{ borderColor: 'black' }}
           underlineStyle={styleEmail.underlineStyle}
-          underlineFocusStyle={{borderColor: 'black'}}
           value={user.email}
         />
       </div>
@@ -206,8 +206,8 @@ const Registration = React.createClass({
           onChange={this.handleTextChange}
           style={{ marginTop: '0px' }}
           type="password"
+          underlineFocusStyle={{ borderColor: 'black' }}
           underlineStyle={stylePassword.underlineStyle}
-          underlineFocusStyle={{borderColor: 'black'}}
           value={user.password}
         />
       </div>
@@ -221,8 +221,8 @@ const Registration = React.createClass({
           floatingLabelText="Minimum Yelp Rating"
           name="minRating"
           onChange={this.handleRatingChange}
+          underlineFocusStyle={{ borderColor: 'black' }}
           underlineStyle={{ borderColor: yellow600 }}
-          underlineFocusStyle={{borderColor: 'black'}}
           value={user.minRating}
         >
           {rating}
@@ -239,8 +239,8 @@ const Registration = React.createClass({
           name="searchRadius"
           onChange={this.handleRadiusChange}
           style={{ marginTop: 20 }}
+          underlineFocusStyle={{ borderColor: 'black' }}
           underlineStyle={{ borderColor: brown700 }}
-          underlineFocusStyle={{borderColor: 'black'}}
           value={user.searchRadius}
         >
           {items}

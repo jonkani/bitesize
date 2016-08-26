@@ -77,7 +77,10 @@ const App = React.createClass({
 
     axios.get('/api/search', { params: search })
     .then((res) => {
-      this.setState({ restaurants: res.data.restaurants });
+      this.setState({
+        restaurants: res.data.restaurants,
+        position: { start: 0, end: 4 }
+      });
       window.localStorage.restaurants = JSON.stringify(res.data.restaurants);
       browserHistory.push('/results');
     })
