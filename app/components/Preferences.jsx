@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-no-bind*/
-import { brown700, green700, red700, yellow600 }
+import { brown700, green700, yellow600 }
   from 'material-ui/styles/colors';
 import { browserHistory, withRouter } from 'react-router';
 import Checkbox from 'material-ui/Checkbox';
@@ -107,7 +107,7 @@ const Preferences = React.createClass({
 
     const styleSelect = {
       customWidth: {
-        width: 151,
+        width: 151
       }
     };
 
@@ -115,7 +115,12 @@ const Preferences = React.createClass({
       <img className="preferences" src="./images/preferences.jpg" />
       <h4
         className="prefSelect"
-        style={{ marginLeft: '10px', marginBottom: '5px', color: green700, textDecoration: 'underline' }}
+        style={{
+          marginLeft: '10px',
+          marginBottom: '5px',
+          color: green700,
+          textDecoration: 'underline'
+        }}
       >Categories:
       </h4>
       <div className="container">
@@ -123,9 +128,9 @@ const Preferences = React.createClass({
           return <div className="item" key={element.id}>
             <Checkbox
               checked={this.state.preferences.disabled.includes(element.id)}
+              iconStyle={{ borderColor: 'red' }}
               label={element.name.split(' ').join('')}
               onTouchTap={() => this.handleCheck(element.id)}
-              iconStyle={{borderColor: 'red'}}
             />
           </div>;
         })}
@@ -135,7 +140,13 @@ const Preferences = React.createClass({
 
       <div style={{ display: 'inline-block', marginTop: '5px' }}>
         <div style={{ display: 'inline-block', marginLeft: '10px' }}>
-          <h4 className="prefSelect" style={{color: yellow600, textDecoration: 'underline'}}>Minimum Rating:</h4>
+          <h4
+            className="prefSelect"
+            style={{
+              color: yellow600,
+              textDecoration: 'underline'
+            }}
+          >Minimum Rating:</h4>
           <SelectField
             floatingLabelText="Minimum Yelp Rating"
             name="minRating"
@@ -147,7 +158,13 @@ const Preferences = React.createClass({
           </SelectField>
         </div>
         <div style={{ display: 'inline-block', marginLeft: '55px' }}>
-          <h4 className="prefSelect" style={{color: brown700, textDecoration: 'underline'}}>Search Radius:</h4>
+          <h4
+            className="prefSelect"
+            style={{
+              color: brown700,
+              textDecoration: 'underline'
+            }}
+          >Search Radius:</h4>
           <SelectField
             floatingLabelText="Search Radius"
             name="searchRadius"

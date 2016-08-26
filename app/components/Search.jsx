@@ -119,6 +119,7 @@ const Search = React.createClass({
       position: 'absolute',
       top: '0.2rem',
       fontSize: '1rem',
+      textShadow: '1px 1px 3px black',
       fontWeight: 800
     };
 
@@ -145,8 +146,8 @@ const Search = React.createClass({
           onBlur={this.handleBlur}
           onChange={this.handleChange}
           style={{ marginLeft: '40px' }}
-          underlineStyle={styleLocation.underlineStyle}
           underlineFocusStyle={styleLocation.underlineStyle}
+          underlineStyle={styleLocation.underlineStyle}
           value={this.state.search.location}
         />
       </Paper>
@@ -169,8 +170,8 @@ const Search = React.createClass({
           onBlur={this.handleBlur}
           onChange={this.handleChange}
           style={{ marginLeft: '40px' }}
-          underlineStyle={styleLocation.underlineStyle}
           underlineFocusStyle={styleLocation.underlineStyle}
+          underlineStyle={styleLocation.underlineStyle}
           value={this.state.search.keyword}
         />
       </Paper>

@@ -105,7 +105,11 @@ const Results = React.createClass({
           style={{ marginBottom: '10px', marginTop: '10px', width: '375px' }}
         >
           <div className="flexContainer">
-            <Paper style={{marginLeft: '7px', marginBottom: '7px'}} circle={true} zDepth={1}>
+            <Paper
+              circle={true}
+              style={{ marginLeft: '7px', marginBottom: '7px' }}
+              zDepth={1}
+            >
 
               <IconButton
                 iconStyle={styles.largeIcon}
