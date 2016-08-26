@@ -15,10 +15,14 @@ import TextField from 'material-ui/TextField';
 import axios from 'axios';
 
 const schema = Joi.object({
-  email: Joi.string().trim().email(),
-  password: Joi.string().trim().min(8),
-  minRating: Joi.number().min(1).max(4),
-  searchRadius: Joi.number().min(1).max(3)
+  email: Joi.string()
+    .trim()
+    .email()
+    .error(new Error('Please enter a valid email.#email')),
+  password: Joi.string()
+    .trim()
+    .min(8)
+    .error(new Error('Seriously, 8 characters.#password'))
 });
 
 const Registration = React.createClass({
@@ -40,26 +44,7 @@ const Registration = React.createClass({
     const result = Joi.validate({ [name]: value }, schema);
 
     if (result.error) {
-      for (const detail of result.error.details) {
-        nextErrors[detail.path] = detail.message;
-      }
-
-      return this.setState({ errors: nextErrors });
-    }
-
-    delete nextErrors[name];
-
-    this.setState({ errors: nextErrors });
-  },
-
-  validateSelect(name, value) {
-    const nextErrors = Object.assign({}, this.state.errors);
-    const result = Joi.validate({ [name]: value }, schema);
-
-    if (result.error) {
-      for (const detail of result.error.details) {
-        nextErrors[detail.path] = detail.message;
-      }
+      nextErrors[name] = result.error.message;
 
       return this.setState({ errors: nextErrors });
     }
@@ -70,7 +55,6 @@ const Registration = React.createClass({
   },
 
   handleRatingChange(event, index, value) {
-    this.validateSelect('minRating', value);
     const nextUser = Object.assign({}, this.state.user, {
       minRating: value
     });
@@ -79,7 +63,6 @@ const Registration = React.createClass({
   },
 
   handleRadiusChange(event, index, value) {
-    this.validateSelect('searchRadius', value);
     const nextUser = Object.assign({}, this.state.user, {
       searchRadius: value
     });
@@ -97,15 +80,15 @@ const Registration = React.createClass({
 
   handleRegister() {
     const result = Joi.validate(this.state.user, schema, {
-      abortEarly: false
+      abortEarly: false,
+      allowUnknown: true
     });
 
     if (result.error) {
+      const parsedError = result.error.message.split('#');
       const nextErrors = {};
 
-      for (const detail of result.error.details) {
-        nextErrors[detail.path] = detail.message;
-      }
+      nextErrors[parsedError[1]] = result.error.message;
 
       return this.setState({ errors: nextErrors });
     }
@@ -181,6 +164,7 @@ const Registration = React.createClass({
     };
 
     const user = this.state.user;
+    const errors = this.state.errors;
 
     return <div>
       <img className="registration" src="./images/registration.jpg" />
@@ -191,7 +175,7 @@ const Registration = React.createClass({
         <TextField
           className="regFormInput"
           errorStyle={styleError}
-          errorText={this.state.errors.email}
+          errorText={errors.email ? errors.email.split('#')[0] : ''}
           floatingLabelFocusStyle={styleEmail.floatingLabelFocusStyle}
           floatingLabelStyle={styleEmail.floatingLabelStyle}
           floatingLabelText="Email"
@@ -211,7 +195,7 @@ const Registration = React.createClass({
         <TextField
           className="regFormInput"
           errorStyle={styleError}
-          errorText={this.state.errors.password}
+          errorText={errors.password ? errors.password.split('#')[0] : ''}
           floatingLabelFocusStyle={stylePassword.floatingLabelFocusStyle}
           floatingLabelStyle={stylePassword.floatingLabelStyle}
           floatingLabelText="Password"
@@ -231,8 +215,6 @@ const Registration = React.createClass({
 
         <SelectField
           className="regFormInput"
-          errorStyle={styleError}
-          errorText={this.state.errors.minRating}
           floatingLabelStyle={{ color: yellow600 }}
           floatingLabelText="Minimum Yelp Rating"
           name="minRating"
@@ -249,8 +231,6 @@ const Registration = React.createClass({
 
         <SelectField
           className="regFormInput"
-          errorStyle={styleError}
-          errorText={this.state.errors.searchRadius}
           floatingLabelStyle={{ color: brown700 }}
           floatingLabelText="Search Radius"
           name="searchRadius"

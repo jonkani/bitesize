@@ -4,6 +4,7 @@ import { browserHistory, withRouter } from 'react-router';
 import { red700, yellow600 } from 'material-ui/styles/colors';
 import Dissatisfied
   from 'material-ui/svg-icons/social/sentiment-dissatisfied';
+import Joi from 'joi';
 import Paper from 'material-ui/Paper';
 import RaisedButton from 'material-ui/RaisedButton';
 import React from 'react';
@@ -11,14 +12,42 @@ import Satisfied from 'material-ui/svg-icons/social/sentiment-satisfied';
 import TextField from 'material-ui/TextField';
 import axios from 'axios';
 
+const schema = Joi.object({
+  email: Joi.string()
+    .trim()
+    .email()
+    .error(new Error('Please enter a valid email.#email')),
+  password: Joi.string()
+    .trim()
+    .min(8)
+    .error(new Error('8 characters, remember?#password'))
+});
+
 const Login = React.createClass({
   getInitialState() {
     return {
       login: {
         email: '',
         password: ''
-      }
+      },
+      errors: {}
     };
+  },
+
+  handleBlur(event) {
+    const { name, value } = event.target;
+    const nextErrors = Object.assign({}, this.state.errors);
+    const result = Joi.validate({ [name]: value }, schema);
+
+    if (result.error) {
+      nextErrors[name] = result.error.message;
+
+      return this.setState({ errors: nextErrors });
+    }
+
+    delete nextErrors[name];
+
+    this.setState({ errors: nextErrors });
   },
 
   handleTextChange(event) {
@@ -30,6 +59,20 @@ const Login = React.createClass({
   },
 
   handleLogin() {
+    const result = Joi.validate(this.state.login, schema, {
+      abortEarly: false,
+      allowUnknown: true
+    });
+
+    if (result.error) {
+      const parsedError = result.error.message.split('#');
+      const nextErrors = {};
+
+      nextErrors[parsedError[1]] = result.error.message;
+
+      return this.setState({ errors: nextErrors });
+    }
+
     const login = this.state.login;
 
     axios.post('/api/token', login)
@@ -81,16 +124,27 @@ const Login = React.createClass({
       }
     };
 
+    const styleError = {
+      position: 'absolute',
+      top: '0.1rem',
+      zIndex: -1
+    };
+
+    const errors = this.state.errors;
+
     return <div>
       <img className="login" src="./images/login.jpg" />
       <div>
         <Paper circle={true} className="mustard loginForm" />
         <TextField
           className="loginTextField"
+          errorStyle={styleError}
+          errorText={errors.email ? errors.email.split('#')[0] : ''}
           floatingLabelFocusStyle={styleEmail.floatingLabelFocusStyle}
           floatingLabelStyle={styleEmail.floatingLabelStyle}
           floatingLabelText="Email"
           name="email"
+          onBlur={this.handleBlur}
           onChange={this.handleTextChange}
           underlineStyle={styleEmail.underlineStyle}
         />
@@ -100,10 +154,13 @@ const Login = React.createClass({
         <Paper circle={true} className="ketchup loginForm" />
         <TextField
           className="loginTextField"
+          errorStyle={styleError}
+          errorText={errors.password ? errors.password.split('#')[0] : ''}
           floatingLabelFocusStyle={stylePassword.floatingLabelFocusStyle}
           floatingLabelStyle={stylePassword.floatingLabelStyle}
           floatingLabelText="Password"
           name="password"
+          onBlur={this.handleBlur}
           onChange={this.handleTextChange}
           type="password"
           underlineStyle={stylePassword.underlineStyle}
