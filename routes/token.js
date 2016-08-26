@@ -20,7 +20,7 @@ router.post('/token', ev(validations.post), (req, res, next) => {
     .first()
     .then((row) => {
       if (!row) {
-        throw boom.create(401, 'Invalid username or password');
+        throw boom.create(401, 'Invalid username or password.');
       }
       user = camelizeKeys(row);
 

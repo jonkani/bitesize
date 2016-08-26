@@ -58,7 +58,9 @@ app.use((err, _req, res, _next) => {
     return res
       .status(err.status || err.output.statusCode)
       .set('Content-Type', 'text/plain')
-      .send(err.errors ? err.errors[0].messages[0] : err.message);
+
+      // eslint-disable-next-line max-len
+      .send(err.errors ? err.errors[0].messages[0] : err.output.payload.message);
   }
 
   // eslint-disable-next-line no-console

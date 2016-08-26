@@ -84,7 +84,7 @@ const App = React.createClass({
     .catch((err) => {
       this.setToast(
         true,
-        `Whoops! ${err}.`
+        `Whoops! ${err.response.data}`
       );
     });
   },

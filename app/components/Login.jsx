@@ -83,7 +83,7 @@ const Login = React.createClass({
     .catch((err) => {
       this.props.setToast(
         true,
-        `Whoops! ${err}.`
+        `Whoops! ${err.response.data}`
       );
     });
   },
