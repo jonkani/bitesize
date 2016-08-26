@@ -146,8 +146,8 @@ const Login = React.createClass({
           name="email"
           onBlur={this.handleBlur}
           onChange={this.handleTextChange}
-          underlineStyle={styleEmail.underlineStyle}
           underlineFocusStyle={styleEmail.underlineStyle}
+          underlineStyle={styleEmail.underlineStyle}
         />
       </div>
 
@@ -164,8 +164,8 @@ const Login = React.createClass({
           onBlur={this.handleBlur}
           onChange={this.handleTextChange}
           type="password"
-          underlineStyle={stylePassword.underlineStyle}
           underlineFocusStyle={stylePassword.underlineStyle}
+          underlineStyle={stylePassword.underlineStyle}
         />
       </div>
 

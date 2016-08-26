@@ -1,6 +1,4 @@
 /* eslint-disable react/jsx-no-bind*/
-import { brown700, green800, red700, yellow600 }
-  from 'material-ui/styles/colors';
 import { BottomNavigation, BottomNavigationItem }
 from 'material-ui/BottomNavigation';
 import { browserHistory, withRouter } from 'react-router';
@@ -16,6 +14,7 @@ import ResultModal from 'components/ResultModal';
 import Settings from 'material-ui/svg-icons/action/settings';
 import Snackbar from 'material-ui/Snackbar';
 import axios from 'axios';
+import { green800 } from 'material-ui/styles/colors';
 
 const App = React.createClass({
   getInitialState() {
@@ -208,7 +207,7 @@ const App = React.createClass({
         className="appBarBun"
         showMenuIconButton={false}
       >
-        <img className="logo" src="./images/logo.png"></img>
+        <img className="logo" src="./images/logo.png" />
       </AppBar>
 
       <Paper zDepth={2}>
