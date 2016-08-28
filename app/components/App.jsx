@@ -218,15 +218,16 @@ const App = React.createClass({
           {navArray}
         </BottomNavigation>
       </Paper>
-
-      {React.cloneElement(this.props.children, {
-        searchRestaurants: this.searchRestaurants,
-        restaurants: this.state.restaurants,
-        nextRestaurants: this.nextRestaurants,
-        setToast: this.setToast,
-        setModal: this.setModal,
-        position: this.state.position
-      })}
+      <div className="mainContainer">
+        {React.cloneElement(this.props.children, {
+          searchRestaurants: this.searchRestaurants,
+          restaurants: this.state.restaurants,
+          nextRestaurants: this.nextRestaurants,
+          setToast: this.setToast,
+          setModal: this.setModal,
+          position: this.state.position
+        })}
+      </div>
       <ResultModal
         closeModal={this.closeModal}
         modalData={this.state.modal}

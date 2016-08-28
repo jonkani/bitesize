@@ -26,10 +26,11 @@ body {
 }
 
 .logo {
-  width: 80%;
-  height: 80%;
-  margin-right: 28px;
-  margin-top: 7px;
+  width: 19rem;
+  height: 4rem;
+  margin: 0 13%;
+  // margin-right: 28px;
+  // margin-top: 7px;
 }
 
 .paper {
@@ -197,11 +198,11 @@ body {
   padding: 10px;
   width: 270px;
   margin-top: 17px;
-  margin-left: 37px;
+  margin-left: 1.3rem;
 }
 
 .burgerBtn {
-  margin-left: 75px;
+  margin-left: 3.7rem;
 }
 
 .searchBtn {
@@ -244,6 +245,14 @@ body {
   align-items: center;
 }
 
+.mainContainer {
+  display:flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: center;
+  align-items: center;
+}
+
 .flexItems {
   margin-left: 15px;
 }
@@ -263,4 +272,11 @@ body {
 
 .aboutPaper {
   border: 3px dotted #FDD835;
+}
+
+@media (min-width: 400px) {
+  .logo {
+    margin: 0 0;
+    padding-right: 80rem;
+  }
 }

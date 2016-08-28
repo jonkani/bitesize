@@ -1,8 +1,8 @@
+import { fullWhite, red700 } from 'material-ui/styles/colors';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import Paper from 'material-ui/Paper';
 import React from 'react';
-import { red700, fullWhite } from 'material-ui/styles/colors';
 
 const ResultModal = React.createClass({
   handleClose() {
@@ -86,7 +86,7 @@ const ResultModal = React.createClass({
               <h6 className="resultPhone">{restaurant.displayPhone}</h6>
             </div>
           </div>
-          <p style={{fontStyle: 'italic'}}>{restaurant.snippetText}</p>
+          <p style={{ fontStyle: 'italic' }}>{restaurant.snippetText}</p>
         </Dialog>
       </div>
     );

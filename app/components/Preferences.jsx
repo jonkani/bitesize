@@ -149,7 +149,8 @@ const Preferences = React.createClass({
               fontSize: '15px',
               fontWeight: '800',
               letterSpacing: '1px'
-            }}>Minimum Rating:
+            }}
+          >Minimum Rating:
           </h4>
           <SelectField
             floatingLabelText="Minimum Yelp Rating"
@@ -162,13 +163,15 @@ const Preferences = React.createClass({
           </SelectField>
         </div>
         <div style={{ display: 'inline-block', marginLeft: '55px' }}>
-          <h4 className="prefSelect"
+          <h4
+            className="prefSelect"
             style={{
               color: brown700,
               textDecoration: 'underline',
               textShadow: 'black 0px 0px 0px',
               fontSize: '15px'
-            }}>Search Radius:
+            }}
+          >Search Radius:
           </h4>
           <SelectField
             floatingLabelText="Search Radius"
