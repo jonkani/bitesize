@@ -140,7 +140,7 @@ const App = React.createClass({
     };
 
     const styleBottonIcon = {
-      marginLeft: '25px'
+      margin: '0 auto'
     };
 
     const pathLoc = (this.props.routes[1].path || '');

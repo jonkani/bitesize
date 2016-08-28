@@ -10,7 +10,7 @@ const About = React.createClass({
       padding: '1%'
     };
 
-    return <div>
+    return <div className="mainContainer">
       <img className="about" src="./images/about.png" />
       <Paper className="aboutPaper" style={stylePaper} zDepth={2}>
         <p className="aboutblock">We've all been there. Whether you're somewhere new and unfamiliar or just can't put your finger on which local eatery you're craving, biteSize is here to help.</p>
