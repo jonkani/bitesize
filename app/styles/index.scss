@@ -191,7 +191,7 @@ body {
 .menu {
   width: 49%;
   margin-top: 7px;
-  margin-left: 86px;
+  margin-left: 5rem;
 }
 
 .welcome {
@@ -267,16 +267,22 @@ body {
   width: 275px;
   margin-top: 20px;
   margin-bottom: 15px;
-  margin-left: 40px;
 }
 
 .aboutPaper {
   border: 3px dotted #FDD835;
 }
 
-@media (min-width: 400px) {
+@media (min-width: 800px) {
   .logo {
-    margin: 0 0;
-    padding-right: 80rem;
+      padding-right: 17%;
+
+  }
+}
+
+@media (min-width: 1200px) {
+  .logo {
+      padding-right: 25%;
+
   }
 }

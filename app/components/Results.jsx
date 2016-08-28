@@ -55,7 +55,6 @@ const Results = React.createClass({
         onTouchTap={this.handleTouchTap}
         style={{
           display: 'inline-block',
-          marginLeft: '10px',
           width: '50px',
           height: '50px',
           backgroundColor: green700
