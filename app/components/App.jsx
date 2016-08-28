@@ -136,7 +136,8 @@ const App = React.createClass({
   render() {
     const styleBottomNav = {
       position: 'fixed',
-      bottom: 0
+      bottom: 0,
+      zIndex: 999
     };
 
     const styleBottonIcon = {
@@ -212,22 +213,21 @@ const App = React.createClass({
       >
         <img className="logo" src="./images/logo.png" />
       </AppBar>
-
-      <Paper zDepth={2}>
+      <div className="mainContainer">
+      {React.cloneElement(this.props.children, {
+        searchRestaurants: this.searchRestaurants,
+        restaurants: this.state.restaurants,
+        nextRestaurants: this.nextRestaurants,
+        setToast: this.setToast,
+        setModal: this.setModal,
+        position: this.state.position
+      })}
+      </div>
+      <Paper style={{ marginTop: '56px' }} zDepth={2}>
         <BottomNavigation className="bottomNav" style={styleBottomNav} >
           {navArray}
         </BottomNavigation>
       </Paper>
-      <div className="mainContainer">
-        {React.cloneElement(this.props.children, {
-          searchRestaurants: this.searchRestaurants,
-          restaurants: this.state.restaurants,
-          nextRestaurants: this.nextRestaurants,
-          setToast: this.setToast,
-          setModal: this.setModal,
-          position: this.state.position
-        })}
-      </div>
       <ResultModal
         closeModal={this.closeModal}
         modalData={this.state.modal}
