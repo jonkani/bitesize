@@ -1,5 +1,4 @@
 /* eslint-disable react/jsx-no-bind*/
-
 import { fullWhite, green700 }
   from 'material-ui/styles/colors';
 import Dissatisfied from 'material-ui/svg-icons/social/sentiment-dissatisfied';
@@ -109,9 +108,8 @@ const Results = React.createClass({
             <Paper
               circle={true}
               style={{ marginLeft: '7px', marginBottom: '7px' }}
-              zDepth={1}
+              zDepth={2}
             >
-
               <IconButton
                 iconStyle={styles.largeIcon}
                 onTouchTap={() => this.handleRowTouch(restaurant)}
@@ -129,12 +127,12 @@ const Results = React.createClass({
                   fontWeight: 'bold'
                 }}
               >
-                <span
+                <a href={restaurant.url}
                   style={{
                     textDecoration: 'underline'
                   }}
                 >{restaurant.name}
-                </span>
+                </a>
               </p>
               <p
                 style={{
