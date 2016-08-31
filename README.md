@@ -1,5 +1,6 @@
 # Bitesize
 ![](screenshots/searchdemo.gif)
+
 Bitesize is a quick restaurant finder that takes a minimum of inputs and gives a minimum of outputs so as to cut down on the number of decisions one has to make when one really just wants something to eat. It's best viewed on mobile, but it'll work on desktop, too.
 
 ## What problem does it solve?
@@ -13,6 +14,7 @@ Bitesize lives on a Node.js Express server, uses a PostgreSQL database to store 
 
 ## What as the most valuable piece of user feedback you received?
 As obvious as it sounds, the expectations users have for mobile pages are different from the ones they have for desktop sites. The feedback helped us tune our interface to be more clear for our users.
+
 ![](screenshots/menudemo.gif)
 
 ## What was the biggest technical challenge you had to overcome?
