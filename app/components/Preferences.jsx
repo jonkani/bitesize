@@ -101,8 +101,9 @@ const Preferences = React.createClass({
     ];
 
     const styleRaisedButton = {
-      marginLeft: '20px',
-      marginTop: '20px'
+      marginTop: '20px',
+      marginLeft: '1rem',
+      marginRight: '1rem'
     };
 
     const styleSelect = {
@@ -111,7 +112,7 @@ const Preferences = React.createClass({
       }
     };
 
-    return <div>
+    return <div className="prefContainer">
       <img className="preferences" src="./images/preferences.jpg" />
       <h4
         className="prefSelect"

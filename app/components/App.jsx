@@ -214,14 +214,14 @@ const App = React.createClass({
         <img className="logo" src="./images/logo.png" />
       </AppBar>
       <div className="mainContainer">
-      {React.cloneElement(this.props.children, {
-        searchRestaurants: this.searchRestaurants,
-        restaurants: this.state.restaurants,
-        nextRestaurants: this.nextRestaurants,
-        setToast: this.setToast,
-        setModal: this.setModal,
-        position: this.state.position
-      })}
+        {React.cloneElement(this.props.children, {
+          searchRestaurants: this.searchRestaurants,
+          restaurants: this.state.restaurants,
+          nextRestaurants: this.nextRestaurants,
+          setToast: this.setToast,
+          setModal: this.setModal,
+          position: this.state.position
+        })}
       </div>
       <Paper style={{ marginTop: '56px' }} zDepth={2}>
         <BottomNavigation className="bottomNav" style={styleBottomNav} >

@@ -132,7 +132,7 @@ body {
 }
 
 .raisedBtn {
-  margin-left: 50px;
+  margin-left: 0px
 }
 
 .resultForm {
@@ -217,8 +217,7 @@ body {
   justify-content: center;
   align-content: flex-start;
   align-items: center;
-  height: 275px;
-  margin-left: 5px;
+  width: 23rem;
 }
 
 .item {
@@ -253,13 +252,20 @@ body {
   align-items: center;
 }
 
+.prefContainer {
+  display:flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: center;
+  align-items: center;
+}
+
 .flexItems {
   margin-left: 15px;
 }
 
 .preferences {
   width: 70%;
-  margin-left: 60px;
   margin-top: 13px;
 }
 
