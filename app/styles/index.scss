@@ -132,7 +132,14 @@ body {
 }
 
 .raisedBtn {
-  margin-left: 0px
+  margin: 0 auto;
+  padding-left: 1rem;
+  width: 18rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: center;
+  align-items: center;
 }
 
 .resultForm {

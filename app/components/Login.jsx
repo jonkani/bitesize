@@ -90,7 +90,8 @@ const Login = React.createClass({
 
   render() {
     const styleRaisedButton = {
-      marginLeft: '20px',
+      marginLeft: '1rem',
+      marginRight: '1rem',
       marginTop: '20px'
     };
 
